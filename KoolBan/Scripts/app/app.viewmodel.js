@@ -43,7 +43,14 @@
         }
 
         // Add navigation member to AppViewModel (for example, app.NavigateToHome());
-        self["navigateTo" + options.name] = navigator;
+        self["navigateTo" + options.name] = function () {
+            window.location.hash = options.name;
+        };
+
+        //this one is used by sammy to perform actual default routing
+        self["_navigateTo" + options.name] = function () {
+            navigator();
+        };
     };
 
     self.initialize = function () {
