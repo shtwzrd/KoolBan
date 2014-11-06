@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KoolBan", "KoolBan\KoolBan.csproj", "{DE39BFD2-6502-45E1-BB8B-C9248AF4F07D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KoolBan.Tests", "KoolBan.Tests\KoolBan.Tests.csproj", "{172E845D-0D12-4383-AE11-CEC75E16CA9D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DE39BFD2-6502-45E1-BB8B-C9248AF4F07D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE39BFD2-6502-45E1-BB8B-C9248AF4F07D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE39BFD2-6502-45E1-BB8B-C9248AF4F07D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE39BFD2-6502-45E1-BB8B-C9248AF4F07D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{172E845D-0D12-4383-AE11-CEC75E16CA9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{172E845D-0D12-4383-AE11-CEC75E16CA9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{172E845D-0D12-4383-AE11-CEC75E16CA9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{172E845D-0D12-4383-AE11-CEC75E16CA9D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
