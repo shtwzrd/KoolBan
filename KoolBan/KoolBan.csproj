@@ -56,6 +56,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -135,9 +136,6 @@
     <Content Include="Content\metro-ui\css\metro-bootstrap-responsive.min.css" />
     <Content Include="Content\metro-ui\css\metro-bootstrap.css" />
     <Content Include="Content\metro-ui\css\metro-bootstrap.min.css" />
-    <Content Include="Content\metro-ui\fonts\iconFont.dev.svg" />
-    <Content Include="Content\metro-ui\fonts\iconFont.svg" />
-    <Content Include="Content\metro-ui\fonts\metroSysIcons.svg" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -172,27 +170,29 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\metro-ui\fonts\metroSysIcons.woff" />
-    <Content Include="Content\metro-ui\fonts\metroSysIcons.ttf" />
-    <Content Include="Content\metro-ui\fonts\iconFont.woff" />
-    <Content Include="Content\metro-ui\fonts\iconFont.ttf" />
-    <Content Include="Content\metro-ui\fonts\iconFont.json" />
-    <Content Include="Content\metro-ui\fonts\iconFont.eot" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="packages.config" />
-    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="favicon.ico" />
     <Content Include="Scripts\app\app.datamodel.js" />
     <Content Include="Scripts\app\app.viewmodel.js" />
     <Content Include="Scripts\app\common.js" />
     <Content Include="Scripts\app\kanban.viewmodel.js" />
     <Content Include="Scripts\app\_run.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\metro-ui\fonts\metroSysIcons.woff" />
+    <Content Include="Content\metro-ui\fonts\metroSysIcons.ttf" />
+    <Content Include="Content\metro-ui\fonts\metroSysIcons.svg" />
+    <Content Include="Content\metro-ui\fonts\iconFont.woff" />
+    <Content Include="Content\metro-ui\fonts\iconFont.ttf" />
+    <Content Include="Content\metro-ui\fonts\iconFont.svg" />
+    <Content Include="Content\metro-ui\fonts\iconFont.json" />
+    <Content Include="Content\metro-ui\fonts\iconFont.eot" />
+    <Content Include="Content\metro-ui\fonts\iconFont.dev.svg" />
+    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
@@ -218,19 +218,42 @@
     <Compile Include="App_Start\MetroUICSSBundleConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ColumnsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NotesController.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Column.cs" />
+    <Compile Include="Models\KoolBanContext.cs" />
+    <Compile Include="Models\Note.cs" />
+    <Compile Include="Models\Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <Content Include="Scripts\jquery-2.1.1.min.map" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\_Board.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="packages.config" />
+    <Content Include="Scripts\jquery-2.1.1.min.map" />
+    <Content Include="Views\Projects\Create.cshtml" />
+    <Content Include="Views\Projects\Delete.cshtml" />
+    <Content Include="Views\Projects\Details.cshtml" />
+    <Content Include="Views\Projects\Edit.cshtml" />
+    <Content Include="Views\Projects\Index.cshtml" />
+    <Content Include="Views\Columns\Create.cshtml" />
+    <Content Include="Views\Columns\Delete.cshtml" />
+    <Content Include="Views\Columns\Details.cshtml" />
+    <Content Include="Views\Columns\Edit.cshtml" />
+    <Content Include="Views\Columns\Index.cshtml" />
+    <Content Include="Views\Notes\Create.cshtml" />
+    <Content Include="Views\Notes\Delete.cshtml" />
+    <Content Include="Views\Notes\Details.cshtml" />
+    <Content Include="Views\Notes\Edit.cshtml" />
+    <Content Include="Views\Notes\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -240,7 +263,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Views\Project\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
