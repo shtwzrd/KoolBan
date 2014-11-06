@@ -24,6 +24,8 @@ namespace KoolBan
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/Scripts/sammy-{version}.js",
                 "~/Scripts/app/common.js",
+                "~/Scripts/app/app.datamodel.js",
+                "~/Scripts/app/app.viewmodel.js",
                 "~/Scripts/app/kanban.viewmodel.js",
                 "~/Scripts/app/_run.js"));
 

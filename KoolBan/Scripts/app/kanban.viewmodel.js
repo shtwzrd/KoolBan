@@ -1,5 +1,6 @@
 ﻿function KanbanViewModel(app, dataModel) {
 
+   /* 
     Sammy(function () {
         this.get('#home', function () {
             // Make a call to the protected Web API by passing in a Bearer Authorization Header
@@ -17,7 +18,7 @@
         });
         this.get('/', function () { this.app.runRoute('get', '#home'); });
     });
-
+*/
         $('.tile').draggable({
             revert: 'invalid'
         });
@@ -39,7 +40,7 @@
 }
 
 app.addViewModel({
-    name: "Kanban",
+    name: "Home",
     bindingMemberName: "board",
     factory: KanbanViewModel
 });
