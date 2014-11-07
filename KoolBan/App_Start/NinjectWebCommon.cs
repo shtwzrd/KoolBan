@@ -1,3 +1,6 @@
+using KoolBan.Models.Abstract;
+using KoolBan.Models.Repositories;
+
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(KoolBan.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(KoolBan.App_Start.NinjectWebCommon), "Stop")]
 
@@ -61,6 +64,12 @@ namespace KoolBan.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            // Setup which object Ninject should inject.
+            kernel.Bind<IProjectRepository>().To<ProjectDbRepository>();
+
+            kernel.Bind<IColumnRepository>().To<ColumnDbRepository>();
+
+            kernel.Bind<INoteRepository>().To<NoteDbRepository>();
         }        
     }
 }
