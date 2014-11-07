@@ -1,7 +1,9 @@
-﻿<!-- ko with: board -->
+﻿@using System.Activities.Statements
+@using KoolBan.Models
+<!-- ko with: board -->
 <div class="jumbotron">
     <div class="container">
-        <div class="page-header"><h1>Project title <small>So cool</small></h1></div>
+        <div class="page-header"><h1>@Model.Name<small> So cool</small></h1></div>
     </div>
 </div>
 <div class="container table-responsive">
@@ -9,50 +11,25 @@
     <table class="table table-bordered table-condensed">
         <thead>
             <tr class="info">
-                <th><h3 class="text-center">To Do</h3></th>
-                <th><h3 class="text-center">Define</h3></th>
-                <th><h3 class="text-center">Implement</h3></th>
-                <th><h3 class="text-center">Verify</h3></th>
-                <th><h3 class="text-center">Done</h3></th>
+                @foreach (var col in @Model.Columns)
+                {
+                    <th><h3 class="text-center">@col.ColumnName</h3></th>
+                }
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>
-                    <!--       <ul class="notes list-unstyled">
-                        <li><p>Make a sandwich</p></li>
-                        <li><p>Have a beer</p></li>
-                        <li><p>File that TPS report</p></li>
-                    </ul> -->
-                    <div class="metro">
-                        <div class="tile bg-cyan double double-vertical"><p>Make a peanut butter and jelly sandwich</p></div>
-                        <div class="tile bg-cobalt"><p>Have a beer</p></div>
-                        <div class="tile bg-violet"><p>Contemplate what it'd be like to be a gorilla-sized ant</p></div>
-                        <div class="tile bg-amber double-vertical"><p>File that TPS report ASAP</p></div>
-
-                    </div>
-                </td>
-                <td>
-                    <ul class="notes list-unstyled">
-                        <li><p>Consider buying a boat</p></li>
-                    </ul>
-                <td>
-                    <ul class="notes list-unstyled">
-                        <li><p>Browse Reddit</p></li>
-                        <li><p>Make KoolBan</p></li>
-                    </ul>
-                </td>
-                <td>
-                    <ul class="notes list-unstyled">
-                        <li><p>No gum on these shoes</p></li>
-                    </ul>
-                </td>
-                <td>
-                    <ul class="notes list-unstyled">
-                        <li><p>Onion rings</p></li>
-                    </ul>
-                </td>
-            </tr>
+                @foreach (var col in @Model.Columns)
+                {
+                    <td>
+                        <div class="metro">
+                            @foreach (var note in @col.Notes)
+                            {
+                                <div class="tile bg-cyan"><p>@note.Description</p></div>
+                            }
+                        </div>
+                    </td>
+                }
         </tbody>
     </table>
 </div>
