@@ -1,6 +1,4 @@
-﻿@using System.Activities.Statements
-@using KoolBan.Models
-<!-- ko with: board -->
+﻿<!-- ko with: board -->
 <div class="jumbotron" style="margin: 0;">
     <div class="container">
         <div class="page-header"><h1>@Model.Name<small> So cool</small></h1></div>
@@ -14,13 +12,13 @@
                 <tr class="header">
                     @foreach (var col in @Model.Columns)
                     {
-                        <th class ="kanban columnhead">
+                        <th class="kanban columnhead">
                             <h3 class="kanban h3">
                                 @col.ColumnName
-                                @if (col.MaxCapacity == null || col.MaxCapacity > 0)
-                            {
-                                <small class="restriction">[@col.Capacity/<span class="limit">@col.MaxCapacity</span>]</small>
-                            }
+                                @if (col.Capacity == null || col.Capacity > 0)
+                                {
+                                    <small class="restriction">[@col.Notes.Count/<span class="limit">@col.Capacity</span>]</small>
+                                }
                             </h3>
                         </th>
                     }

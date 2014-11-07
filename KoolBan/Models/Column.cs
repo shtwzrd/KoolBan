@@ -19,7 +19,6 @@ namespace KoolBan.Models
         public Project Project { get; set; }
 
         public int Capacity { get; set; }
-        public int MaxCapacity { get; set; }
 
         public IList<Note> Notes { get; set; }
     }

@@ -102,8 +102,6 @@ namespace KoolBan.Controllers
             };
 
             implement.Notes.Add(viral);
-            implement.Capacity = 2;
-            implement.MaxCapacity = 4;
 
             var drive = new Note
             {
@@ -134,8 +132,6 @@ namespace KoolBan.Controllers
             };
 
             test.Notes.Add(procrastinate);
-            test.Capacity = 3;
-            test.MaxCapacity = 3;
 
             var productize = new Note
             {
@@ -154,6 +150,8 @@ namespace KoolBan.Controllers
                 Password = "",
                 Columns = new List<Column>()
             };
+            implement.Capacity = 2;
+            test.Capacity = 3;
 
             project.Columns.Add(ondeck);
             project.Columns.Add(implement);
