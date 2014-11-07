@@ -25,7 +25,24 @@
                         <div class="metro">
                             @foreach (var note in @col.Notes)
                             {
-                                <div class="tile bg-cyan"><p>@note.Description</p></div>
+                                string size = "tile";
+
+                                if (note.Description.Length < 40)
+                                {
+                                    size = "tile";
+                                }
+                                else if (note.Description.Length < 90)
+                                {
+                                    size = "tile double";
+                                }
+                                else
+                                {
+                                    size = "tile double double-vertical";
+                                }
+                                <div class="@size bg-@note.NoteColor">
+                                    <p>@note.Description</p>
+                                    <div class="logo"><span class="@note.Logo"></span></div>
+                                </div>
                             }
                         </div>
                     </td>
