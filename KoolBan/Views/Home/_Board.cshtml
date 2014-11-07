@@ -1,60 +1,66 @@
-﻿<!-- ko with: board -->
-<div class="jumbotron">
+﻿@using System.Activities.Statements
+@using KoolBan.Models
+<!-- ko with: board -->
+<div class="jumbotron" style="margin: 0;">
     <div class="container">
-        <div class="page-header"><h1>Project title <small>So cool</small></h1></div>
+        <div class="page-header"><h1>@Model.Name<small> So cool</small></h1></div>
     </div>
 </div>
-<div class="container table-responsive">
+<div class="kanban">
+    <div class="container table-responsive">
 
-    <table class="table table-bordered table-condensed">
-        <thead>
-            <tr class="info">
-                <th><h3 class="text-center">To Do</h3></th>
-                <th><h3 class="text-center">Define</h3></th>
-                <th><h3 class="text-center">Implement</h3></th>
-                <th><h3 class="text-center">Verify</h3></th>
-                <th><h3 class="text-center">Done</h3></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    <!--       <ul class="notes list-unstyled">
-                        <li><p>Make a sandwich</p></li>
-                        <li><p>Have a beer</p></li>
-                        <li><p>File that TPS report</p></li>
-                    </ul> -->
-                    <div class="metro">
-                        <div class="tile bg-cyan double double-vertical"><p>Make a peanut butter and jelly sandwich</p></div>
-                        <div class="tile bg-cobalt"><p>Have a beer</p></div>
-                        <div class="tile bg-violet"><p>Contemplate what it'd be like to be a gorilla-sized ant</p></div>
-                        <div class="tile bg-amber double-vertical"><p>File that TPS report ASAP</p></div>
+        <table class="table table-condensed">
+            <thead>
+                <tr class="header">
+                    @foreach (var col in @Model.Columns)
+                    {
+                        <th class ="kanban columnhead">
+                            <h3 class="kanban h3">
+                                @col.ColumnName
+                                @if (col.MaxCapacity == null || col.MaxCapacity > 0)
+                            {
+                                <small class="restriction">[@col.Capacity/<span class="limit">@col.MaxCapacity</span>]</small>
+                            }
+                            </h3>
+                        </th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    @foreach (var col in @Model.Columns)
+                    {
+                        <td>
+                            <div class="metro">
+                                @foreach (var note in @col.Notes)
+                                {
+                                    string size = "tile";
 
-                    </div>
-                </td>
-                <td>
-                    <ul class="notes list-unstyled">
-                        <li><p>Consider buying a boat</p></li>
-                    </ul>
-                <td>
-                    <ul class="notes list-unstyled">
-                        <li><p>Browse Reddit</p></li>
-                        <li><p>Make KoolBan</p></li>
-                    </ul>
-                </td>
-                <td>
-                    <ul class="notes list-unstyled">
-                        <li><p>No gum on these shoes</p></li>
-                    </ul>
-                </td>
-                <td>
-                    <ul class="notes list-unstyled">
-                        <li><p>Onion rings</p></li>
-                    </ul>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                                    if (note.Description.Length < 40)
+                                    {
+                                        size = "tile";
+                                    }
+                                    else if (note.Description.Length < 106)
+                                    {
+                                        size = "tile double";
+                                    }
+                                    else
+                                    {
+                                        size = "tile double double-vertical";
+                                    }
+                                    string color = "bg-dark" + note.NoteColor;
+                                    string ol = "ol-" + note.NoteColor.ToString().ToLower();
+                                    <div class="@size @color @ol" style="box-shadow: none;">
+                                        <p>@note.Description</p>
+                                        <div class="metro tile logo ol-transparent"><span class="@note.Logo" style="font-family: 'Glyphicons Halflings'"></span></div>
+                                    </div>
+                                }
+                            </div>
+                        </td>
+                    }
+            </tbody>
+        </table>
+    </div>
 </div>
 <div class="jumbotron">
     <h1 data-bind="text: poop"></h1>

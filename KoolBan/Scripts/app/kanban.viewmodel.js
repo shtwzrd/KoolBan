@@ -1,6 +1,7 @@
 ﻿function KanbanViewModel() {
     var self = this;
     self.poop = ko.observable("Poop");
+
    /* 
     Sammy(function () {
         this.get('#home', function () {
