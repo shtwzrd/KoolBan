@@ -21,11 +21,11 @@
         this.get('/', function () { this.app.runRoute('get', '#home'); });
     });
 */
-        $('.tile').draggable({
+        $('.tile.main').draggable({
             revert: 'invalid'
         });
         $('td').droppable({
-            accept: '.tile',
+            accept: '.tile.main',
             tolerance: 'pointer',
             drop: function (event, ui) {
                 alert('inside');

@@ -50,7 +50,7 @@
                                     }
                                     string color = "bg-dark" + note.NoteColor;
                                     string ol = "ol-" + note.NoteColor.ToString().ToLower();
-                                    <div class="@size @color @ol" style="box-shadow: none;">
+                                    <div class="@size main @color @ol" style="-webkit-box-shadow: none; -ms-box-shadow: none; box-shadow: none;">
                                         <p>@note.Description</p>
                                         <div class="metro tile logo ol-transparent"><span class="@note.Logo" style="font-family: 'Glyphicons Halflings'"></span></div>
                                     </div>

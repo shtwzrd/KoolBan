@@ -53,26 +53,30 @@ textarea {
 
 .metro .tile .logo {
     position: absolute;
-  bottom: 0;
-  right: 10px;
-  width: 29px;
-  height: 29px;
-  text-align: center;
-  color: #ffffff;
-  padding: 5px;
-  margin: 0;
-  vertical-align: middle !important;
-  display: block;
-  font-size: 12pt;
-  font-family: 'Glyphicons Halflings';
-  background-color: transparent;
+    bottom: 0;
+    right: 10px;
+    width: 29px;
+    height: 29px;
+    text-align: center;
+    color: #ffffff;
+    padding: 5px;
+    margin: 0;
+    vertical-align: middle !important;
+    display: block;
+    font-size: 12pt;
+    font-family: 'Glyphicons Halflings';
+    background-color: transparent;
     -webkit-box-shadow: none;
     -ms-box-shadow: none;
     box-shadow: none;
 }
 
+.metro .tile .main {
+    position: relative;
+}
+
 .kanban {
-    background-color: #00529b; 
+    background-color: #00529b;
 }
 
 .kanban .h3 {
@@ -96,6 +100,6 @@ textarea {
 
 .kanban .columnhead .limit {
     color: #fff;
-    font-size: 18px; 
+    font-size: 18px;
     position: relative;
 }
