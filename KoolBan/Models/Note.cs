@@ -23,28 +23,19 @@ namespace KoolBan.Models
 
     public enum NoteColor
     {
-        black,
-        lime,
-        green,
-        emerald,
-        teal,
-        cyan,
-        cobalt,
-        indigo,
-        violet,
-        pink,
-        magenta,
-        crimson,
-        red,
-        orange,
-        amber,
-        yellow,
-        brown,
-        olive,
-        steel,
-        mauve,
-        taupe,
-        gray
+        Green,
+        Emerald,
+        Teal,
+        Cyan,
+        Cobalt,
+        Indigo,
+        Violet,
+        Pink,
+        Magenta,
+        Crimson,
+        Red,
+        Orange,
+        Brown,
     }
 
 }

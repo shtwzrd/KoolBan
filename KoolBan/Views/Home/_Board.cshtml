@@ -1,54 +1,66 @@
 ﻿@using System.Activities.Statements
 @using KoolBan.Models
 <!-- ko with: board -->
-<div class="jumbotron">
+<div class="jumbotron" style="margin: 0;">
     <div class="container">
         <div class="page-header"><h1>@Model.Name<small> So cool</small></h1></div>
     </div>
 </div>
-<div class="container table-responsive">
+<div class="kanban">
+    <div class="container table-responsive">
 
-    <table class="table table-bordered table-condensed">
-        <thead>
-            <tr class="info">
-                @foreach (var col in @Model.Columns)
-                {
-                    <th><h3 class="text-center">@col.ColumnName</h3></th>
-                }
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                @foreach (var col in @Model.Columns)
-                {
-                    <td>
-                        <div class="metro">
-                            @foreach (var note in @col.Notes)
+        <table class="table table-condensed">
+            <thead>
+                <tr class="header">
+                    @foreach (var col in @Model.Columns)
+                    {
+                        <th class ="kanban columnhead">
+                            <h3 class="kanban h3">
+                                @col.ColumnName
+                                @if (col.MaxCapacity == null || col.MaxCapacity > 0)
                             {
-                                string size = "tile";
-
-                                if (note.Description.Length < 40)
-                                {
-                                    size = "tile";
-                                }
-                                else if (note.Description.Length < 90)
-                                {
-                                    size = "tile double";
-                                }
-                                else
-                                {
-                                    size = "tile double double-vertical";
-                                }
-                                <div class="@size bg-@note.NoteColor">
-                                    <p>@note.Description</p>
-                                    <div class="logo"><span class="@note.Logo"></span></div>
-                                </div>
+                                <small class="restriction">[@col.Capacity/<span class="limit">@col.MaxCapacity</span>]</small>
                             }
-                        </div>
-                    </td>
-                }
-        </tbody>
-    </table>
+                            </h3>
+                        </th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    @foreach (var col in @Model.Columns)
+                    {
+                        <td>
+                            <div class="metro">
+                                @foreach (var note in @col.Notes)
+                                {
+                                    string size = "tile";
+
+                                    if (note.Description.Length < 40)
+                                    {
+                                        size = "tile";
+                                    }
+                                    else if (note.Description.Length < 106)
+                                    {
+                                        size = "tile double";
+                                    }
+                                    else
+                                    {
+                                        size = "tile double double-vertical";
+                                    }
+                                    string color = "bg-dark" + note.NoteColor;
+                                    string ol = "ol-" + note.NoteColor.ToString().ToLower();
+                                    <div class="@size @color @ol" style="box-shadow: none;">
+                                        <p>@note.Description</p>
+                                        <div class="metro tile logo ol-transparent"><span class="@note.Logo" style="font-family: 'Glyphicons Halflings'"></span></div>
+                                    </div>
+                                }
+                            </div>
+                        </td>
+                    }
+            </tbody>
+        </table>
+    </div>
 </div>
 <div class="jumbotron">
     <h1 data-bind="text: poop"></h1>

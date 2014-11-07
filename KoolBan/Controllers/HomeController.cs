@@ -43,7 +43,7 @@ namespace KoolBan.Controllers
             var embrace = new Note
             {
                 Description = "embrace frictionless metrics",
-                NoteColor = NoteColor.pink,
+                NoteColor = NoteColor.Pink,
                 Logo =  "glyphicon glyphicon-cog",
                 Column = null, 
                 ColumnId = 0
@@ -54,7 +54,7 @@ namespace KoolBan.Controllers
             var actualize = new Note
             {
                 Description = "synergistically actualize sustainable initiatives in order to promote sustainable synergy within the market of sticky e-commerce-based revolutionary metrics",
-                NoteColor = NoteColor.crimson,
+                NoteColor = NoteColor.Crimson,
                 Column = null, 
                 ColumnId = 0
             };
@@ -64,7 +64,7 @@ namespace KoolBan.Controllers
             var network = new Note
             {
                 Description = "interactively network mission-critical e-business",
-                NoteColor = NoteColor.cobalt,
+                NoteColor = NoteColor.Cobalt,
                 Column = null, 
                 ColumnId = 0
             };
@@ -74,7 +74,7 @@ namespace KoolBan.Controllers
             var architect = new Note
             {
                 Description = "progressively architect intermandated technologies",
-                NoteColor = NoteColor.cyan,
+                NoteColor = NoteColor.Cyan,
                 Column = null, 
                 ColumnId = 1
             };
@@ -84,17 +84,19 @@ namespace KoolBan.Controllers
             var viral = new Note
             {
                 Description = "compellingly monetize viral methods of empowerment",
-                NoteColor = NoteColor.lime,
+                NoteColor = NoteColor.Brown,
                 Column = null, 
                 ColumnId = 1
             };
 
             implement.Notes.Add(viral);
+            implement.Capacity = 2;
+            implement.MaxCapacity = 4;
 
             var drive = new Note
             {
                 Description = "progressively drive user friendly internal or 'organic' sources",
-                NoteColor = NoteColor.violet,
+                NoteColor = NoteColor.Violet,
                 Column = null, 
                 ColumnId = 2
             };
@@ -104,7 +106,7 @@ namespace KoolBan.Controllers
             var fabricate = new Note
             {
                 Description = "appropriately fabricate cross-platform outsourcing",
-                NoteColor = NoteColor.steel,
+                NoteColor = NoteColor.Orange,
                 Column = null, 
                 ColumnId = 2
             };
@@ -114,17 +116,19 @@ namespace KoolBan.Controllers
             var procrastinate = new Note
             {
                 Description = "dynamically procrastinate real-time networks",
-                NoteColor = NoteColor.red,
+                NoteColor = NoteColor.Red,
                 Column = null, 
                 ColumnId = 2
             };
 
             test.Notes.Add(procrastinate);
+            test.Capacity = 3;
+            test.MaxCapacity = 3;
 
             var productize = new Note
             {
                 Description = "compellingly monetize viral methods of empowerment",
-                NoteColor = NoteColor.cyan,
+                NoteColor = NoteColor.Cyan,
                 Column = null, 
                 ColumnId = 3
             };
