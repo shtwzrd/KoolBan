@@ -222,10 +222,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Abstract\IColumnRepository.cs" />
+    <Compile Include="Models\Abstract\INoteRepository.cs" />
+    <Compile Include="Models\Abstract\IProjectRepository.cs" />
     <Compile Include="Models\Column.cs" />
     <Compile Include="Models\KoolBanContext.cs" />
     <Compile Include="Models\Note.cs" />
     <Compile Include="Models\Project.cs" />
+    <Compile Include="Models\Repositories\ColumnDbRepository.cs" />
+    <Compile Include="Models\Repositories\NoteDbRepository.cs" />
+    <Compile Include="Models\Repositories\ProjectDbRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -236,6 +242,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
+    <Content Include="Views\Home\About.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

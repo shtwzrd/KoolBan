@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KoolBan.Models.Abstract
 {
-    interface IProjectRepository
+    public interface IProjectRepository
     {
         Project Find(String name);
 //        void Delete(int id);
