@@ -88,12 +88,12 @@ textarea {
 
 .kanban-table td {
     vertical-align: top;
-    overflow: hidden;
     width: 260px;
     max-width: 260px;
     margin: 5px;
     padding: 5px 5px 5px 5px;
     display: table-cell;
+    z-index: -1;
 }
 
 .kanban .h3 {
