@@ -88,9 +88,14 @@ textarea {
 
 .kanban-table td {
     vertical-align: top;
-    width: 260px;
-    max-width: 260px;
-    margin: 5px;
+    width: 280px;
+    max-width: 280px;
+    -moz-min-width: 280px;
+    -ms-min-width: 280px;
+    -o-min-width: 280px;
+    -webkit-min-width: 280px;
+    min-width: 280px;
+    margin: 20px;
     padding: 5px 5px 5px 5px;
     display: table-cell;
     z-index: -1;
@@ -105,8 +110,13 @@ textarea {
 .kanban .columnhead {
     color: #fff;
     position: relative;
-    width: 260px;
-    max-width: 260px;
+    width: 280px;
+    max-width: 280px;
+    -moz-min-width: 280px;
+    -ms-min-width: 280px;
+    -o-min-width: 280px;
+    -webkit-min-width: 280px;
+    min-width: 280px;
     display: table-cell;
     padding-left: 5px;
 }
@@ -116,7 +126,7 @@ textarea {
     color: #fff;
     position: absolute;
     bottom: 5px;
-    right: 5px;
+    right: 25px;
 }
 
 .kanban .columnhead .limit {
