@@ -12,7 +12,7 @@ namespace KoolBan.Models
         public DbSet<Column> Columns { get; set; }
         public DbSet<Note> Notes { get; set; }
 
-        public KoolBanContext() : base("KoolBan")
+        public KoolBanContext() : base("KoolBanDatabase")
         {
             
         }

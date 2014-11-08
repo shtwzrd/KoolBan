@@ -10,13 +10,14 @@ namespace KoolBan.Models
     {
         [Key]
         [Required(ErrorMessage = "Project name required")]
-        public String Name { get; set; }
+        public String ProjectId { get; set; }
 
         [Required]
-        public bool IsPublic { get; set; }
+        [Display(Name = "Private?")]
+        public bool IsPrivate { get; set; }
 
         public String Password { get; set; }
 
-        public IList<Column> Columns { get; set; }
+        public virtual IList<Column> Columns { get; set; }
     }
 }
