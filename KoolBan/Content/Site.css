@@ -90,6 +90,11 @@ textarea {
     vertical-align: top;
     width: 260px;
     max-width: 260px;
+    -moz-min-width: 260px;
+    -ms-min-width: 260px;
+    -o-min-width: 260px;
+    -webkit-min-width: 260px;
+    min-width: 260px;
     margin: 5px;
     padding: 5px 5px 5px 5px;
     display: table-cell;
@@ -107,6 +112,11 @@ textarea {
     position: relative;
     width: 260px;
     max-width: 260px;
+    -moz-min-width: 260px;
+    -ms-min-width: 260px;
+    -o-min-width: 260px;
+    -webkit-min-width: 260px;
+    min-width: 260px;
     display: table-cell;
     padding-left: 5px;
 }
