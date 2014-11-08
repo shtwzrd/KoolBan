@@ -20,15 +20,15 @@ namespace KoolBan.Migrations
             
             context.Projects.AddOrUpdate(
                 p => p.ProjectId,
-                new Project { ProjectId = "Demo Project", IsPrivate = false}
+                new Project { ProjectId = "Demo", IsPrivate = false}
             );
 
             context.Columns.AddOrUpdate(
                 c => c.ColumnId,
-                new Column { ColumnId = 1, ColumnName = "To Do", Priority = 1, ProjectId = "Demo Project" },
-                new Column { ColumnId = 2, ColumnName = "In Progress", Priority = 2, Capacity = 4, ProjectId = "Demo Project" },
-                new Column { ColumnId = 3, ColumnName = "Test", Priority = 3, Capacity = 4, ProjectId = "Demo Project" },
-                new Column { ColumnId = 4, ColumnName = "Done", Priority = 4, ProjectId = "Demo Project" }
+                new Column { ColumnId = 1, ColumnName = "To Do", Priority = 1, ProjectId = "Demo" },
+                new Column { ColumnId = 2, ColumnName = "In Progress", Priority = 2, Capacity = 4, ProjectId = "Demo" },
+                new Column { ColumnId = 3, ColumnName = "Test", Priority = 3, Capacity = 4, ProjectId = "Demo" },
+                new Column { ColumnId = 4, ColumnName = "Done", Priority = 4, ProjectId = "Demo" }
             );
 
             context.Notes.AddOrUpdate(

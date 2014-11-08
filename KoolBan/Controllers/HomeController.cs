@@ -14,12 +14,24 @@ namespace KoolBan.Controllers
             _projectRepository = projectRepository;
         }
 
-        public ActionResult Index()
+
+        [Route("")]
+        [Route("index")]
+        [Route("{id}")]
+        [HttpGet]
+        public ActionResult Index(string id = "Demo")
         {
-            return View(_projectRepository.Find("Demo Project"));
+            Project project = _projectRepository.Find(id);
+            if (project != null)
+            {
+                return View(project);
+            }
+            return RedirectToAction("Index");
+
         }
 
         [HttpPost]
+        [Route("create/{id}")]
         public ActionResult Create(Project project)
         {
             if (ModelState.IsValid)
@@ -32,6 +44,7 @@ namespace KoolBan.Controllers
             return View("Index");
         }
 
+        [Route("about")]
         public ActionResult About()
         {
             return View();
