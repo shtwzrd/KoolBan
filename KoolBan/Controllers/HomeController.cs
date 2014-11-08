@@ -16,7 +16,7 @@ namespace KoolBan.Controllers
 
         public ActionResult Index()
         {
-            return View(_projectRepository.Find("Demo"));
+            return View(_projectRepository.Find("Demo Project"));
         }
 
         [HttpPost]
@@ -32,8 +32,6 @@ namespace KoolBan.Controllers
             return View("Index");
         }
 
-        [Route("about")]
-        [Route("home/about")]
         public ActionResult About()
         {
             return View();
