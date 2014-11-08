@@ -12,9 +12,11 @@ namespace KoolBan.Models
         public int NoteId { get; set; }
         [Required]
         public String Description { get; set; }
+
         [Required]
-        public int ColumnId { get; set; } // Foreign key
-        public Column Column { get; set; }
+        public virtual int ColumnId { get; set; } // Foreign key
+        public virtual Column Column { get; set; }
+
         public String Logo { get; set; }
 
         [Display(Name = "Color")]

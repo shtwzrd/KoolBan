@@ -15,11 +15,13 @@ namespace KoolBan.Models
         public String ColumnName { get; set; }
 
         [Required]
-        public int ProjectId { get; set; } // Foreign key
-        public Project Project { get; set; }
+        public virtual String ProjectId { get; set; } // Foreign key
+        public virtual Project Project { get; set; }
 
+        public int Priority { get; set; }
         public int Capacity { get; set; }
 
-        public IList<Note> Notes { get; set; }
+        // Navigation property
+        public virtual IList<Note> Notes { get; set; }
     }
 }
