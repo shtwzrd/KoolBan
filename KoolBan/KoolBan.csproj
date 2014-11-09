@@ -110,6 +110,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -236,6 +237,7 @@
     <Compile Include="Models\Repositories\ColumnDbRepository.cs" />
     <Compile Include="Models\Repositories\NoteDbRepository.cs" />
     <Compile Include="Models\Repositories\ProjectDbRepository.cs" />
+    <Compile Include="Models\Security\PasswordHash.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -262,6 +264,7 @@
     <Content Include="Views\Notes\Details.cshtml" />
     <Content Include="Views\Notes\Edit.cshtml" />
     <Content Include="Views\Notes\Index.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

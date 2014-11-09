@@ -4,9 +4,12 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using KoolBan.Models;
+using KoolBan.Models.Security;
 
 namespace KoolBan.Controllers
 {
@@ -50,6 +53,7 @@ namespace KoolBan.Controllers
         {
             if (ModelState.IsValid)
             {
+                project.Password = PasswordHash.CreateHash(project.Password);
                 db.Projects.Add(project);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -57,6 +61,7 @@ namespace KoolBan.Controllers
 
             return View(project);
         }
+
 
         // GET: Projects/Edit/5
         public ActionResult Edit(string id)
@@ -82,6 +87,7 @@ namespace KoolBan.Controllers
         {
             if (ModelState.IsValid)
             {
+                project.Password = PasswordHash.CreateHash(project.Password);
                 db.Entry(project).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
