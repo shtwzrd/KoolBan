@@ -43,6 +43,7 @@ namespace KoolBan.Controllers
         }
 
         [Route("login")]
+//        [RequireHttps]
         public ActionResult Login()
         {
             return View();
@@ -50,6 +51,7 @@ namespace KoolBan.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken] // Validate hidden form field from Login.
+//        [RequireHttps] // Enable for secure HTTPS connection
         [Route("login")]
         public ActionResult Login(string pwd)
         {
