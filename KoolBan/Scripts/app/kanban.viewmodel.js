@@ -1,17 +1,17 @@
 ﻿function KanbanViewModel() {
     var self = this;
     self.projectId = $('#projectId')[0].value;
-    self.columns = [ {ColumnName: "Fake" }];
-
-    self.people = ko.observableArray([{ name: 'Franklin', credits: 250 }, { name: 'Mario', credits: 5800 }]);
+    self.columns = ko.observableArray([ {ColumnName: "", Notes: [], Capacity: 0 }]);
 
     app.dataModel.projectId = self.projectId;
 
     self.handleColumnData = function (result) {
-        self.columns = ko.utils.arrayMap(result, function (item) {
+        var obs = ko.utils.arrayMap(result, function (item) {
             return ko.mapping.fromJS(item);
         });
-        console.log(result);
+
+        self.columns(ko.mapping.toJS(obs));
+        console.log(self.columns());
     }
 
     app.dataModel.getColumns(self.handleColumnData);

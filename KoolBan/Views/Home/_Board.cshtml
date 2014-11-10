@@ -7,11 +7,7 @@
     </div>
 </div>
 <div class="jumbotron kanban" style="overflow-x: auto; width: 100%;">
-    <!--    <div class="container table-responsive" style="overflow-x: auto; width: 100%;"> -->
-    <div data-bind="template: { name: 'kanban-template', foreach: columns, as: 'column' }"></div>
-<h2>Participants</h2>
-Here are the participants:
-<div data-bind="template: { name: 'person-template', foreach: people }"></div>
+    <div data-bind="template: { name: 'kanban-template', data: columns() }"></div>
 </div>
 <table class="kanban-table">
     <thead>
@@ -82,7 +78,6 @@ Here are the participants:
             }
     </tbody>
 </table>
-<!--</div> -->
 <div class="jumbotron">
     <h1>ASP.NET</h1>
     <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
@@ -115,44 +110,49 @@ Here are the participants:
 </div>
 
 <script type="text/html" id="kanban-template">
-    <span>POOP</span>
-    <span data-bind="text: column.ColumnName"></span>
     <table class="kanban-table">
         <thead>
             <tr>
-                 <!-- ko template: { name: 'kanban-headers-template', foreach: $parent, as: 'columnheader' } -->
-                 <!-- /ko -->        
+                <!-- ko foreach: $parent.columns() -->
+
+                <th class="kanban columnhead">
+                    <h3 class="kanban h3">
+                        <span data-bind="text: ColumnName"></span>
+                        <span data-bind="if: Capacity > 0">
+                            <small class="restriction">
+                                [
+                                <!-- ko text: Notes.length -->
+                                <!-- /ko -->
+                                /
+                                <span class="limit">
+                                    <!-- ko text: Capacity -->
+                                    <!-- /ko -->
+                                </span>
+                                ]
+                            </small>
+                        </span>
+                    </h3>
+                </th>
+                <!-- /ko -->
             </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+            <tr>
+            <!-- ko foreach: $parent.columns() -->
+
+            <td class="kanban-table">
+                <div class="metro">
+                    <!-- ko foreach: Notes -->
+                    <div class="tile main" data-bind="css: { 'double': Description.length > 40, 'double-vertical': Description.length > 106 }">
+                            <p data-bind="text: Description"></p>
+                        </div>
+                            <!-- /ko -->                            
+                        </div>
+                    </td>
+
+            <!-- /ko -->
+        </tbody>
     </table>
 
 </script>
-
-<script type="text/html" id="kanban-headers-template">
-
-    <span>Poop2</span>
-    <th class="kanban columnhead" id="kanban-header-$index">
-        <h3 class="kanban h3">
-            <span data-bind="text: columnheader.ColumnName"></span>
-            <span data-bind="if: columnheader.Notes.length > 0">
-                <small class="restriction">[</small>
-                <small class="restriction" data-bind="text: columnheader.Notes.length"></small>
-                <small class="restriction">/</small>
-                <span class="limit" data-bind="text: columnheader.Capacity"></span>
-                <small class="restriction">]</small>
-            </span>
-        </h3>
-    </th>
-
-</script>
-
-<script type="text/html" id="person-template">
-    <h3 data-bind="text: name"></h3>
-    <p>Credits: <span data-bind="text: credits"></span></p>
-</script>
-
-
-
-
 <!-- /ko -->
