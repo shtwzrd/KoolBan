@@ -2,12 +2,9 @@ using KoolBan.Models;
 
 namespace KoolBan.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<KoolBan.Models.KoolBanContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<KoolBanContext>
     {
         public Configuration()
         {
@@ -15,7 +12,7 @@ namespace KoolBan.Migrations
             AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(KoolBan.Models.KoolBanContext context)
+        protected override void Seed(KoolBanContext context)
         {
             
             context.Projects.AddOrUpdate(
