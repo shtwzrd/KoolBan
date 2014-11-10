@@ -54,7 +54,7 @@
     };
 
     self.initialize = function () {
-        Sammy().run();
+        Path.listen();
     }
 }
 
