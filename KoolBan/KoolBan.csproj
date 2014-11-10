@@ -219,10 +219,7 @@
     <Compile Include="App_Start\MetroUICSSBundleConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\ColumnsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\NotesController.cs" />
-    <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -249,21 +246,6 @@
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Projects\Create.cshtml" />
-    <Content Include="Views\Projects\Delete.cshtml" />
-    <Content Include="Views\Projects\Details.cshtml" />
-    <Content Include="Views\Projects\Edit.cshtml" />
-    <Content Include="Views\Projects\Index.cshtml" />
-    <Content Include="Views\Columns\Create.cshtml" />
-    <Content Include="Views\Columns\Delete.cshtml" />
-    <Content Include="Views\Columns\Details.cshtml" />
-    <Content Include="Views\Columns\Edit.cshtml" />
-    <Content Include="Views\Columns\Index.cshtml" />
-    <Content Include="Views\Notes\Create.cshtml" />
-    <Content Include="Views\Notes\Delete.cshtml" />
-    <Content Include="Views\Notes\Details.cshtml" />
-    <Content Include="Views\Notes\Edit.cshtml" />
-    <Content Include="Views\Notes\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
