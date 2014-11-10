@@ -1,81 +1,87 @@
-﻿@using System.Collections
-@using KoolBan.Models
+﻿@using KoolBan.Models
 <!-- ko with: board -->
 <div class="jumbotron" style="margin: 0;">
     <div class="container">
         <div class="page-header"><h1 data_bind="valueWithInit: 'projectId'">@Model.ProjectId</h1></div>
-        <input id="projectId" value=@Model.ProjectId style="visibility: hidden">
+        <input id="projectId" value=@Model.ProjectId style="visibility: hidden"> <!--retrieved by the client-side viewmodel-->
     </div>
 </div>
 <div class="jumbotron kanban" style="overflow-x: auto; width: 100%;">
     <!--    <div class="container table-responsive" style="overflow-x: auto; width: 100%;"> -->
-
-    <table class="kanban-table">
-        <thead>
-            <tr>
-                @foreach (var col in @Model.Columns)
-                {
-                    <th class="kanban columnhead">
-                        <h3 class="kanban h3">
-                            @col.ColumnName
-                            @if (col.Capacity == null || col.Capacity > 0)
-                            {
-                                <small class="restriction">[@col.Notes.Count/<span class="limit">@col.Capacity</span>]</small>
-                            }
-                        </h3>
-                    </th>
-                }
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                @foreach (var col in @Model.Columns)
-                {
-                    IEnumerable<Note> list = col.Notes;
-                    var sortedList = list.OrderBy(f => f.Description.Count()).Reverse();
-                    <td class="kanban-table">
-                        <div class="metro">
-
-
-                            @foreach (var note in sortedList)
-                            {
-                                string size = "tile";
-
-                                if (note.Description.Length < 40)
-                                {
-                                    size = "tile";
-                                }
-                                else if (note.Description.Length < 106)
-                                {
-                                    size = "tile double";
-                                }
-                                else
-                                {
-                                    size = "tile double double-vertical";
-                                }
-                                string color = "bg-dark" + note.NoteColor;
-                                string ol = "ol-" + note.NoteColor.ToString().ToLower();
-                                string olhex = Note.NoteColorToHex(note.NoteColor);
-
-
-                                <div class="@size main @color @ol" style="-webkit-box-shadow: none; -ms-box-shadow: none; box-shadow: none;">
-                                    <p>@note.Description</p>
-
-                                    <div class="metro tile config ol-transparent">
-                                        <a href="" class="glyphicon glyphicon-edit" style="font-family: 'Glyphicons Halflings'; color: @olhex;"></a>
-                                    </div>
-
-                                    <div class="metro tile logo ol-transparent">
-                                        <span class="glyphicon-@note.Logo" style="font-family: 'Glyphicons Halflings'"></span>
-                                    </div>
-                                </div>
-                            }
-                        </div>
-                    </td>
-                }
-        </tbody>
-    </table>
+    <div data-bind="template: { name: 'kanban-template', foreach: columns, as: 'column' }"></div>
+<h2>Participants</h2>
+Here are the participants:
+<div data-bind="template: { name: 'person-template', foreach: people }"></div>
 </div>
+<table class="kanban-table">
+    <thead>
+        <tr>
+            @{ var count = 0; }
+            @foreach (var col in @Model.Columns)
+            {
+                ++count;
+                <th class="kanban columnhead" id="columnhead-@count">
+                    <h3 class="kanban h3">
+                        @col.ColumnName
+                        @if (col.Capacity == null || col.Capacity > 0)
+                        {
+                            <small class="restriction">[@col.Notes.Count/<span class="limit">@col.Capacity</span>]</small>
+                        }
+                    </h3>
+                </th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @{ var colcount = 0; }
+            @foreach (var col in @Model.Columns)
+            {
+                ++colcount;
+                IEnumerable<Note> list = col.Notes;
+                var sortedList = list.OrderBy(f => f.Description.Count()).Reverse();
+                <td class="kanban-table" id="column-@colcount">
+                    <div class="metro">
+
+
+                        @foreach (var note in sortedList)
+                        {
+                            var size = "tile";
+
+                            if (note.Description.Length < 40)
+                            {
+                                size = "tile";
+                            }
+                            else if (note.Description.Length < 106)
+                            {
+                                size = "tile double";
+                            }
+                            else
+                            {
+                                size = "tile double double-vertical";
+                            }
+                            string color = "bg-dark" + note.NoteColor;
+                            string ol = "ol-" + note.NoteColor.ToString().ToLower();
+                            string olhex = Note.NoteColorToHex(note.NoteColor);
+
+
+                            <div class="@size main @color @ol" style="-webkit-box-shadow: none; -ms-box-shadow: none; box-shadow: none;">
+                                <p>@note.Description</p>
+
+                                <div class="metro tile config ol-transparent">
+                                    <a href="" class="glyphicon glyphicon-edit" style="font-family: 'Glyphicons Halflings'; color: @olhex;"></a>
+                                </div>
+
+                                <div class="metro tile logo ol-transparent">
+                                    <span class="glyphicon-@note.Logo" style="font-family: 'Glyphicons Halflings'"></span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </td>
+            }
+    </tbody>
+</table>
 <!--</div> -->
 <div class="jumbotron">
     <h1>ASP.NET</h1>
@@ -107,5 +113,46 @@
         </div>
     </div>
 </div>
+
+<script type="text/html" id="kanban-template">
+    <span>POOP</span>
+    <span data-bind="text: column.ColumnName"></span>
+    <table class="kanban-table">
+        <thead>
+            <tr>
+                 <!-- ko template: { name: 'kanban-headers-template', foreach: $parent, as: 'columnheader' } -->
+                 <!-- /ko -->        
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+</script>
+
+<script type="text/html" id="kanban-headers-template">
+
+    <span>Poop2</span>
+    <th class="kanban columnhead" id="kanban-header-$index">
+        <h3 class="kanban h3">
+            <span data-bind="text: columnheader.ColumnName"></span>
+            <span data-bind="if: columnheader.Notes.length > 0">
+                <small class="restriction">[</small>
+                <small class="restriction" data-bind="text: columnheader.Notes.length"></small>
+                <small class="restriction">/</small>
+                <span class="limit" data-bind="text: columnheader.Capacity"></span>
+                <small class="restriction">]</small>
+            </span>
+        </h3>
+    </th>
+
+</script>
+
+<script type="text/html" id="person-template">
+    <h3 data-bind="text: name"></h3>
+    <p>Credits: <span data-bind="text: credits"></span></p>
+</script>
+
+
+
 
 <!-- /ko -->

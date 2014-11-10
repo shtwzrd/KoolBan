@@ -14,7 +14,7 @@
     // Data
 
     // Data access operations
-    self.getColumns = function () {
+    self.getColumns = function (callback) {
 
         function getData() {
             return $.ajax({
@@ -26,14 +26,9 @@
             });
         }
 
-        return getData().done(self.handleData);
+        return getData().done(callback);
     }
 
-    self.handleColumnData = function (result) {
-        if (result != null) {
-            self.projectColumns = result;
-        }
-        return self.projectColumns;
-    }
+
 };
 

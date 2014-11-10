@@ -137,6 +137,8 @@
     <Content Include="Scripts\jquery-ui.min-1.11.1.js" />
     <Content Include="Scripts\knockout-3.2.0.debug.js" />
     <Content Include="Scripts\knockout-3.2.0.js" />
+    <Content Include="Scripts\knockout.mapping-latest.debug.js" />
+    <Content Include="Scripts\knockout.mapping-latest.js" />
     <Content Include="Scripts\knockout.validation.js" />
     <Content Include="Scripts\path.js" />
     <Content Include="Scripts\path.min.js" />
