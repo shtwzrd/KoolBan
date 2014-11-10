@@ -22,7 +22,7 @@ namespace KoolBan
                 "~/Scripts/knockout.validation.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                "~/Scripts/sammy-{version}.js",
+                "~/Scripts/path.js",
                 "~/Scripts/app/common.js",
                 "~/Scripts/app/app.datamodel.js",
                 "~/Scripts/app/app.viewmodel.js",

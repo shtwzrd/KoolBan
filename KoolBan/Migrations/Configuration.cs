@@ -2,12 +2,9 @@ using KoolBan.Models;
 
 namespace KoolBan.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<KoolBan.Models.KoolBanContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<KoolBanContext>
     {
         public Configuration()
         {
@@ -15,7 +12,7 @@ namespace KoolBan.Migrations
             AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(KoolBan.Models.KoolBanContext context)
+        protected override void Seed(KoolBanContext context)
         {
             
             context.Projects.AddOrUpdate(
@@ -52,6 +49,42 @@ namespace KoolBan.Migrations
                 new Note { NoteId = 17, ColumnId = 2, Description = "Organise work desk", Logo = "tasks", NoteColor = NoteColor.Crimson },
                 new Note { NoteId = 18, ColumnId = 3, Description = "Clean all windows", Logo = "tasks", NoteColor = NoteColor.Indigo },
                 new Note { NoteId = 19, ColumnId = 4, Description = "Learn how to juggle", Logo = "tasks", NoteColor = NoteColor.Violet }
+            );
+
+            context.Projects.AddOrUpdate(
+              p => p.ProjectId,
+              new Project { ProjectId = "Unicorn", IsPrivate = false }
+          );
+
+            context.Columns.AddOrUpdate(
+                c => c.ColumnId,
+                new Column { ColumnId = 5, ColumnName = "To Do", Priority = 1, ProjectId = "Unicorn" },
+                new Column { ColumnId = 6, ColumnName = "In Progress", Priority = 2, Capacity = 4, ProjectId = "Unicorn" },
+                new Column { ColumnId = 7, ColumnName = "Test", Priority = 3, Capacity = 4, ProjectId = "Unicorn" },
+                new Column { ColumnId = 8, ColumnName = "Done", Priority = 4, ProjectId = "Unicorn" }
+            );
+
+            context.Notes.AddOrUpdate(
+                n => n.NoteId,
+                new Note { NoteId = 20, ColumnId = 5, Description = "Eat a piece of unicorn", Logo = "heart", NoteColor = NoteColor.Green },
+                new Note { NoteId = 21, ColumnId = 6, Description = "Cut the unicorn into pieces", Logo = "heart", NoteColor = NoteColor.Green },
+                new Note { NoteId = 22, ColumnId = 7, Description = "Check if the unicorn is poisonous", Logo = "heart", NoteColor = NoteColor.Green },
+                new Note { NoteId = 23, ColumnId = 8, Description = "Check if the unicorn is a lie. Note: It wasn't a lie!", Logo = "heart", NoteColor = NoteColor.Green },
+                new Note { NoteId = 24, ColumnId = 8, Description = "Purchase unicorn using Siri", Logo = "heart", NoteColor = NoteColor.Green },
+                new Note { NoteId = 25, ColumnId = 8, Description = "Teach a mouse to ride a bike", Logo = "plane", NoteColor = NoteColor.Orange },
+                new Note { NoteId = 26, ColumnId = 6, Description = "Purchase a space rocket big enough to carry at least 40 mice to Mars", Logo = "plane", NoteColor = NoteColor.Orange },
+                new Note { NoteId = 27, ColumnId = 5, Description = "Come up with a cool name for the mice. Note: Something with Biker...", Logo = "plane", NoteColor = NoteColor.Orange },
+                new Note { NoteId = 28, ColumnId = 7, Description = "Figure out how to get enough cash for the trip using crowdfunding", Logo = "plane", NoteColor = NoteColor.Orange },
+                new Note { NoteId = 29, ColumnId = 6, Description = "Research how to make all clouds in the world rainbow-coloured", Logo = "eye-open", NoteColor = NoteColor.Teal },
+                new Note { NoteId = 30, ColumnId = 7, Description = "Research how to make all water in the world rainbow-coloured", Logo = "eye-open", NoteColor = NoteColor.Teal },
+                new Note { NoteId = 31, ColumnId = 8, Description = "Research how to make all food in the world rainbow-coloured", Logo = "eye-open", NoteColor = NoteColor.Teal },
+                new Note { NoteId = 32, ColumnId = 5, Description = "Research how to undo all rainbow-colour changes made", Logo = "eye-open", NoteColor = NoteColor.Teal },
+                new Note { NoteId = 33, ColumnId = 5, Description = "Buy flowers for a loved one", Logo = "usd", NoteColor = NoteColor.Pink },
+                new Note { NoteId = 34, ColumnId = 7, Description = "Buy a unicorn for your best friend", Logo = "usd", NoteColor = NoteColor.Red },
+                new Note { NoteId = 35, ColumnId = 9, Description = "Purchase a jet-pack", Logo = "usd", NoteColor = NoteColor.Emerald },
+                new Note { NoteId = 36, ColumnId = 6, Description = "Organise work desk", Logo = "tasks", NoteColor = NoteColor.Crimson },
+                new Note { NoteId = 37, ColumnId = 7, Description = "Clean all windows", Logo = "tasks", NoteColor = NoteColor.Indigo },
+                new Note { NoteId = 38, ColumnId = 8, Description = "Learn how to juggle", Logo = "tasks", NoteColor = NoteColor.Violet }
             );
             
         }
