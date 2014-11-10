@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -8,14 +10,15 @@ namespace KoolBan.Controllers
 {
     public class ColumnsController : Controller
     {
-        private KoolBanContext db = new KoolBanContext();
+        private readonly KoolBanContext _db = new KoolBanContext();
 
         // GET: Columns
         public ActionResult Index()
         {
-            var columns = db.Columns.Include(c => c.Project);
+            var columns = _db.Columns.Include(c => c.Project);
             return View(columns.ToList());
         }
+
 
         // GET: Columns/Details/5
         public ActionResult Details(int? id)
@@ -24,7 +27,7 @@ namespace KoolBan.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Column column = db.Columns.Find(id);
+            Column column = _db.Columns.Find(id);
             if (column == null)
             {
                 return HttpNotFound();
@@ -35,7 +38,7 @@ namespace KoolBan.Controllers
         // GET: Columns/Create
         public ActionResult Create()
         {
-            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "ProjectId");
+            ViewBag.ProjectId = new SelectList(_db.Projects, "ProjectId", "ProjectId");
             return View();
         }
 
@@ -48,12 +51,12 @@ namespace KoolBan.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Columns.Add(column);
-                db.SaveChanges();
+                _db.Columns.Add(column);
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Password", column.ProjectId);
+            ViewBag.ProjectId = new SelectList(_db.Projects, "ProjectId", "Password", column.ProjectId);
             return View(column);
         }
 
@@ -64,12 +67,12 @@ namespace KoolBan.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Column column = db.Columns.Find(id);
+            Column column = _db.Columns.Find(id);
             if (column == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Password", column.ProjectId);
+            ViewBag.ProjectId = new SelectList(_db.Projects, "ProjectId", "Password", column.ProjectId);
             return View(column);
         }
 
@@ -82,11 +85,11 @@ namespace KoolBan.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(column).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(column).State = EntityState.Modified;
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Password", column.ProjectId);
+            ViewBag.ProjectId = new SelectList(_db.Projects, "ProjectId", "Password", column.ProjectId);
             return View(column);
         }
 
@@ -97,7 +100,7 @@ namespace KoolBan.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Column column = db.Columns.Find(id);
+            Column column = _db.Columns.Find(id);
             if (column == null)
             {
                 return HttpNotFound();
@@ -110,9 +113,9 @@ namespace KoolBan.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Column column = db.Columns.Find(id);
-            db.Columns.Remove(column);
-            db.SaveChanges();
+            Column column = _db.Columns.Find(id);
+            _db.Columns.Remove(column);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -120,7 +123,7 @@ namespace KoolBan.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

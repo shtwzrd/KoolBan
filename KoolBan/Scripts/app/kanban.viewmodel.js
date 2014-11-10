@@ -1,31 +1,17 @@
 ﻿function KanbanViewModel() {
     var self = this;
-    self.poop = ko.observable("Poop");
+    self.projectId = $('#projectId')[0].value;
 
-    /* 
-     Sammy(function () {
-         this.get('#home', function () {
-             // Make a call to the protected Web API by passing in a Bearer Authorization Header
-             $.ajax({
-                 method: 'get',
-                 url: app.dataModel.userInfoUrl,
-                 contentType: "application/json; charset=utf-8",
-                 headers: {
-                     'Authorization': 'Bearer ' + app.dataModel.getAccessToken()
-                 },
-                 success: function (data) {
-                     self.myHometown('Your Hometown is : ' + data.hometown);
-                 }
-             });
-         });
-         this.get('/', function () { this.app.runRoute('get', '#home'); });
-     });
- */
+    alert(self.projectId);
+    app.dataModel.projectId = self.projectId;
+
+    alert(app.dataModel.getColumns());
+
     $('.tile.main').draggable({
         revert: 'invalid',
         snap: '.kanban td',
         stack: "div",
-});
+    });
 
     $('.kanban td').droppable({
         accept: '.tile.main',
@@ -39,7 +25,7 @@
         out: function (event, ui) {
             $('#log').text('out');
         }
-    }); 
+    });
 
     return self;
 

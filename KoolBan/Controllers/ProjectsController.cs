@@ -4,17 +4,40 @@ using System.Net;
 using System.Web.Mvc;
 using KoolBan.Models;
 using KoolBan.Models.Security;
+using Newtonsoft.Json;
 
 namespace KoolBan.Controllers
 {
     public class ProjectsController : Controller
     {
-        private KoolBanContext db = new KoolBanContext();
+        private readonly KoolBanContext _db = new KoolBanContext();
+
+
+        public JsonResult GetProjectColumnsJson(string projectId)
+        {
+            var data = _db.Projects.Find(projectId.ToLower()).Columns.Select(
+                c => new Column
+                {
+                    ColumnId = c.ColumnId,
+                    ColumnName = c.ColumnName,
+                    Capacity = c.Capacity,
+                    Notes = c.Notes,
+                    Priority = c.Priority
+                });
+
+            var result = new JsonNetResult
+            {
+                Data = data,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+                Settings = { ReferenceLoopHandling = ReferenceLoopHandling.Ignore }
+            };
+            return result;
+        } 
 
         // GET: Projects
         public ActionResult Index()
         {
-            return View(db.Projects.ToList());
+            return View(_db.Projects.ToList());
         }
 
         // GET: Projects/Details/5
@@ -24,7 +47,7 @@ namespace KoolBan.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = db.Projects.Find(id);
+            Project project = _db.Projects.Find(id);
             if (project == null)
             {
                 return HttpNotFound();
@@ -48,8 +71,8 @@ namespace KoolBan.Controllers
             if (ModelState.IsValid)
             {
                 project.Password = PasswordHash.CreateHash(project.Password);
-                db.Projects.Add(project);
-                db.SaveChanges();
+                _db.Projects.Add(project);
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -64,7 +87,7 @@ namespace KoolBan.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = db.Projects.Find(id);
+            Project project = _db.Projects.Find(id);
             if (project == null)
             {
                 return HttpNotFound();
@@ -82,8 +105,8 @@ namespace KoolBan.Controllers
             if (ModelState.IsValid)
             {
                 project.Password = PasswordHash.CreateHash(project.Password);
-                db.Entry(project).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(project).State = EntityState.Modified;
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(project);
@@ -96,7 +119,7 @@ namespace KoolBan.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = db.Projects.Find(id);
+            Project project = _db.Projects.Find(id);
             if (project == null)
             {
                 return HttpNotFound();
@@ -109,9 +132,9 @@ namespace KoolBan.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Project project = db.Projects.Find(id);
-            db.Projects.Remove(project);
-            db.SaveChanges();
+            Project project = _db.Projects.Find(id);
+            _db.Projects.Remove(project);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -119,7 +142,7 @@ namespace KoolBan.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

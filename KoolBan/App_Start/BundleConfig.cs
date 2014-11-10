@@ -27,6 +27,7 @@ namespace KoolBan
                 "~/Scripts/app/app.datamodel.js",
                 "~/Scripts/app/app.viewmodel.js",
                 "~/Scripts/app/kanban.viewmodel.js",
+                "~/Scripts/app/app.kobindings.js",
                 "~/Scripts/app/_run.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
