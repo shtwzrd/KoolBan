@@ -46,9 +46,15 @@
                     if (options.data.Description.length > 106) {
                         markup += "double-vertical ";
                     }
-                    markup += "main ";
+                    markup += "bg-dark" + options.data.Color;
+                    markup += " main";
 
                     return markup;
+                });
+                options.data.NoteLogo = ko.computed(function() {
+                    var logo = "glyphicon glyphicon-";
+                    logo += options.data.Logo;
+                    return logo;
                 });
                 return ko.mapping.fromJS(options.data);
             }

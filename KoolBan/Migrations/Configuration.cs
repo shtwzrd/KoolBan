@@ -81,7 +81,7 @@ namespace KoolBan.Migrations
                 new Note { NoteId = 32, ColumnId = 5, Description = "Research how to undo all rainbow-colour changes made", Logo = "eye-open", NoteColor = NoteColor.Teal },
                 new Note { NoteId = 33, ColumnId = 5, Description = "Buy flowers for a loved one", Logo = "usd", NoteColor = NoteColor.Pink },
                 new Note { NoteId = 34, ColumnId = 7, Description = "Buy a unicorn for your best friend", Logo = "usd", NoteColor = NoteColor.Red },
-                new Note { NoteId = 35, ColumnId = 9, Description = "Purchase a jet-pack", Logo = "usd", NoteColor = NoteColor.Emerald },
+                new Note { NoteId = 35, ColumnId = 8, Description = "Purchase a jet-pack", Logo = "usd", NoteColor = NoteColor.Emerald },
                 new Note { NoteId = 36, ColumnId = 6, Description = "Organise work desk", Logo = "tasks", NoteColor = NoteColor.Crimson },
                 new Note { NoteId = 37, ColumnId = 7, Description = "Clean all windows", Logo = "tasks", NoteColor = NoteColor.Indigo },
                 new Note { NoteId = 38, ColumnId = 8, Description = "Learn how to juggle", Logo = "tasks", NoteColor = NoteColor.Violet }

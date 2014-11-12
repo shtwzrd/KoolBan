@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Windows.Forms;
 
 namespace KoolBan.Models
 {
@@ -15,8 +16,17 @@ namespace KoolBan.Models
 
         public String Logo { get; set; }
 
-        [Display(Name = "Color")]
         public NoteColor NoteColor { get; set; }
+
+        [Display(Name = "Color")]
+        public string Color
+        {
+            get { return NoteColor.ToString(); }
+            set
+            {
+                this.NoteColor = (NoteColor)Enum.Parse(typeof(NoteColor), this.NoteColor.ToString());
+            }
+        }
 
         public static string NoteColorToHex(NoteColor color)
         {
@@ -51,7 +61,7 @@ namespace KoolBan.Models
                 default:
                     return "#ffffff";
             }
-    
+
         }
     }
 

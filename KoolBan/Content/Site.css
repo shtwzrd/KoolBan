@@ -155,3 +155,49 @@ textarea {
     box-shadow: none;
     visibility: hidden;
 }
+
+.metro .tile {
+    -webkit-box-shadow: none;
+    -ms-box-shadow: none;
+    box-shadow: none
+}
+
+.bg-darkGreen:hover {
+    outline: 3px solid #60a917 !important;
+}
+.bg-darkEmerald:hover {
+    outline: 3px solid #008a00 !important;
+}
+.bg-darkTeal:hover {
+    outline: 3px solid #00aba9 !important;
+}
+.bg-darkCyan:hover {
+    outline: 3px solid #1ba1e2 !important;
+}
+.bg-darkCobalt:hover {
+    outline: 3px solid #0050ef !important;
+}
+.bg-darkIndigo:hover {
+    outline: 3px solid #6a00ff !important;
+}
+.bg-darkViolet:hover {
+    outline: 3px solid #aa00ff !important;
+}
+.bg-darkPink:hover {
+    outline: 3px solid #dc4fad !important;
+}
+.bg-darkMagenta:hover {
+    outline: 3px solid #d80073 !important;
+}
+ .bg-darkCrimson:hover {
+    outline: 3px solid #a20025 !important;
+}
+.bg-darkRed:hover {
+    outline: 3px solid #e51400 !important;
+}
+.bg-darkOrange:hover {
+    outline: 3px solid #fa6800 !important;
+}
+.bg-darkBrown:hover {
+    outline: 3px solid #825a2c !important;
+}
