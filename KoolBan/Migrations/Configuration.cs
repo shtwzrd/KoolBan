@@ -1,4 +1,5 @@
 using KoolBan.Models;
+using KoolBan.Models.Security;
 
 namespace KoolBan.Migrations
 {
@@ -85,6 +86,31 @@ namespace KoolBan.Migrations
                 new Note { NoteId = 36, ColumnId = 6, Description = "Organise work desk", Logo = "tasks", NoteColor = NoteColor.Crimson },
                 new Note { NoteId = 37, ColumnId = 7, Description = "Clean all windows", Logo = "tasks", NoteColor = NoteColor.Indigo },
                 new Note { NoteId = 38, ColumnId = 8, Description = "Learn how to juggle", Logo = "tasks", NoteColor = NoteColor.Violet }
+            );
+
+            context.Projects.AddOrUpdate(
+                p => p.ProjectId,
+                new Project { ProjectId = "Secret", IsPrivate = true, Password = PasswordHash.CreateHash("password")}
+            );
+
+            context.Columns.AddOrUpdate(
+                c => c.ColumnId,
+                new Column { ColumnId = 9, ColumnName = "To Do", Priority = 1, ProjectId = "Secret" },
+                new Column { ColumnId = 10, ColumnName = "In Progress", Priority = 2, Capacity = 4, ProjectId = "Secret" },
+                new Column { ColumnId = 11, ColumnName = "Test", Priority = 3, Capacity = 4, ProjectId = "Secret" },
+                new Column { ColumnId = 12, ColumnName = "Done", Priority = 4, ProjectId = "Secret" }
+            );
+
+            context.Notes.AddOrUpdate(
+                n => n.NoteId,
+                new Note { NoteId = 39, ColumnId = 9, Description = "Eat a piece of cake", Logo = "heart", NoteColor = NoteColor.Green },
+                new Note { NoteId = 40, ColumnId = 10, Description = "Cut the cake into pieces", Logo = "heart", NoteColor = NoteColor.Green },
+                new Note { NoteId = 41, ColumnId = 11, Description = "Check if the cake is poisonous", Logo = "heart", NoteColor = NoteColor.Green },
+                new Note { NoteId = 42, ColumnId = 12, Description = "Check if the cake is a lie. Note: It wasn't a lie!", Logo = "heart", NoteColor = NoteColor.Green },
+                new Note { NoteId = 43, ColumnId = 12, Description = "Purchase cake using Siri", Logo = "heart", NoteColor = NoteColor.Green },
+                new Note { NoteId = 44, ColumnId = 12, Description = "Teach a mouse to ride a bike", Logo = "plane", NoteColor = NoteColor.Orange },
+                new Note { NoteId = 45, ColumnId = 10, Description = "Purchase a space rocket big enough to carry at least 40 mice to Mars", Logo = "plane", NoteColor = NoteColor.Orange },
+                new Note { NoteId = 46, ColumnId = 9, Description = "Come up with a cool name for the mice. Note: Something with Biker...", Logo = "plane", NoteColor = NoteColor.Orange }
             );
             
         }
