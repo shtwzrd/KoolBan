@@ -142,8 +142,8 @@
 
             <td class="kanban-table">
                 <div class="metro">
-                    <!-- ko foreach: Notes -->
-                    <div class="tile main" data-bind="css: { 'double': Description.length > 40, 'double-vertical': Description.length > 106 }">
+                    <!-- ko foreach: AutoSortedNotes -->
+                    <div data-bind="css: NoteClass ">
                             <p data-bind="text: Description"></p>
                         </div>
                             <!-- /ko -->                            
