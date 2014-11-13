@@ -39,6 +39,14 @@ namespace KoolBan.Controllers
             if (ModelState.IsValid)
             {
                 _db.Entry(project).State = EntityState.Modified;
+                foreach (var c in project.Columns)
+                {
+                    _db.Entry(c).State = EntityState.Modified;
+                    foreach (var n in c.Notes)
+                    {
+                        _db.Entry(n).State = EntityState.Modified;
+                    }
+                }
                 _db.SaveChanges();
                 return Json(new {result = "HttpPost successful"});
             }

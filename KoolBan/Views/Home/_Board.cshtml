@@ -7,8 +7,10 @@
     </div>
 </div>
 <div class="jumbotron kanban" style="overflow-x: auto; width: 100%;">
-    <!-- ko if: loading != true -->
-        <div data-bind="template: { name: 'kanban-template', data: columns() }"></div>
+
+    <!-- ko if: Loading() == false -->
+    <span data-bind="text: JSON.stringify(ko.toJS($data), null, 2)"></span>
+    <div data-bind="template: { name: 'kanban-template', data: model }"></div>
     <!-- /ko -->
 </div>
 
@@ -44,10 +46,12 @@
 </div>
 
 <script type="text/html" id="kanban-template">
+
+    <span data-bind="text: JSON.stringify(ko.toJS($data), null, 2)"></span>
     <table class="kanban-table">
         <thead>
             <tr>
-                <!-- ko foreach: $parent.columns() -->
+                <!-- ko foreach: Columns() -->
 
                 <th class="kanban columnhead">
                     <h3 class="kanban h3">
@@ -64,7 +68,7 @@
         </thead>
         <tbody>
             <tr>
-                <!-- ko foreach: $parent.columns() -->
+                <!-- ko foreach: Columns() -->
 
                 <td class="kanban-table">
                     <div class="metro">
@@ -72,7 +76,7 @@
                         <div data-bind="css: NoteClass ">
                             <p data-bind="text: Description"></p>
                             <div class="metro tile logo ol-transparent">
-                                <span data-bind="css: NoteLogo" style="font-family: 'Glyphicons Halflings'"></span>
+                                <span data-bind="css: NoteLogo()" style="font-family: 'Glyphicons Halflings'"></span>
                             </div>
                             <div class="metro tile config ol-transparent">
                                 <a href="" class="glyphicon glyphicon-edit" style="font-family: 'Glyphicons Halflings'; "></a>

@@ -90,8 +90,8 @@ namespace KoolBan.Migrations
 
 
             context.Projects.AddOrUpdate(
-            p => p.ProjectId,
-            new Project { ProjectId = "Secret", IsPrivate = true, Password = PasswordHash.CreateHash("password") }
+                p => p.ProjectId,
+                new Project { ProjectId = "Secret", IsPrivate = true, Password = PasswordHash.CreateHash("password") }
             );
 
             context.Columns.AddOrUpdate(
