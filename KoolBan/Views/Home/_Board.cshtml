@@ -7,77 +7,11 @@
     </div>
 </div>
 <div class="jumbotron kanban" style="overflow-x: auto; width: 100%;">
-    <div data-bind="template: { name: 'kanban-template', data: columns() }"></div>
+    <!-- ko if: loading != true -->
+        <div data-bind="template: { name: 'kanban-template', data: columns() }"></div>
+    <!-- /ko -->
 </div>
-<table class="kanban-table">
-    <thead>
-        <tr>
-            @{ var count = 0; }
-            @foreach (var col in @Model.Columns)
-            {
-                ++count;
-                <th class="kanban columnhead" id="columnhead-@count">
-                    <h3 class="kanban h3">
-                        @col.ColumnName
-                        @if (col.Capacity == null || col.Capacity > 0)
-                        {
-                            <small class="restriction">[@col.Notes.Count/<span class="limit">@col.Capacity</span>]</small>
-                        }
-                    </h3>
-                </th>
-            }
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            @{ var colcount = 0; }
-            @foreach (var col in @Model.Columns)
-            {
-                ++colcount;
-                IEnumerable<Note> list = col.Notes;
-                var sortedList = list.OrderBy(f => f.Description.Count()).Reverse();
-                <td class="kanban-table" id="column-@colcount">
-                    <div class="metro">
 
-
-                        @foreach (var note in sortedList)
-                        {
-                            var size = "tile";
-
-                            if (note.Description.Length < 40)
-                            {
-                                size = "tile";
-                            }
-                            else if (note.Description.Length < 106)
-                            {
-                                size = "tile double";
-                            }
-                            else
-                            {
-                                size = "tile double double-vertical";
-                            }
-                            string color = "bg-dark" + note.NoteColor;
-                            string ol = "ol-" + note.NoteColor.ToString().ToLower();
-                            string olhex = Note.NoteColorToHex(note.NoteColor);
-
-
-                            <div class="@size main @color @ol" style="-webkit-box-shadow: none; -ms-box-shadow: none; box-shadow: none;">
-                                <p>@note.Description</p>
-
-                                <div class="metro tile config ol-transparent">
-                                    <a href="" class="glyphicon glyphicon-edit" style="font-family: 'Glyphicons Halflings'; color: @olhex;"></a>
-                                </div>
-
-                                <div class="metro tile logo ol-transparent">
-                                    <span class="glyphicon-@note.Logo" style="font-family: 'Glyphicons Halflings'"></span>
-                                </div>
-                            </div>
-                        }
-                    </div>
-                </td>
-            }
-    </tbody>
-</table>
 <div class="jumbotron">
     <h1>ASP.NET</h1>
     <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
@@ -120,15 +54,7 @@
                         <span data-bind="text: ColumnName"></span>
                         <span data-bind="if: Capacity > 0">
                             <small class="restriction">
-                                [
-                                <!-- ko text: Notes.length -->
-                                <!-- /ko -->
-                                /
-                                <span class="limit">
-                                    <!-- ko text: Capacity -->
-                                    <!-- /ko -->
-                                </span>
-                                ]
+                                [<!-- ko text: Notes.length --><!-- /ko -->/<span class="limit"><!-- ko text: Capacity --><!-- /ko --></span>]
                             </small>
                         </span>
                     </h3>
@@ -147,6 +73,9 @@
                             <p data-bind="text: Description"></p>
                             <div class="metro tile logo ol-transparent">
                                 <span data-bind="css: NoteLogo" style="font-family: 'Glyphicons Halflings'"></span>
+                            </div>
+                            <div class="metro tile config ol-transparent">
+                                <a href="" class="glyphicon glyphicon-edit" style="font-family: 'Glyphicons Halflings'; "></a>
                             </div>
                         </div>
                         <!-- /ko -->

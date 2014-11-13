@@ -29,6 +29,18 @@
         return getData().done(callback);
     }
 
+    self.setColumns = function (message, callback) {
+        function sendData() {
+            return $.ajax({
+                method: 'post',
+                data: JSON.stringify(message),
+                url: '/Projects/SetProjectColumnsJson',
+                contentType: "application/json; charset=utf-8",
+            });
+        }
+
+        return sendData().done(callback);
+    }
 
 };
 

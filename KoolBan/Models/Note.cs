@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Windows.Forms;
 
 namespace KoolBan.Models
 {
@@ -12,57 +11,10 @@ namespace KoolBan.Models
 
         [Required]
         public virtual int ColumnId { get; set; } // Foreign key
-        public virtual Column Column { get; set; }
 
         public String Logo { get; set; }
 
-        public NoteColor NoteColor { get; set; }
-
-        [Display(Name = "Color")]
-        public string Color
-        {
-            get { return NoteColor.ToString(); }
-            set
-            {
-                this.NoteColor = (NoteColor)Enum.Parse(typeof(NoteColor), this.NoteColor.ToString());
-            }
-        }
-
-        public static string NoteColorToHex(NoteColor color)
-        {
-            switch (color)
-            {
-                case Models.NoteColor.Green:
-                    return "#60a917";
-                case Models.NoteColor.Emerald:
-                    return "#008a00";
-                case Models.NoteColor.Teal:
-                    return "#00aba9";
-                case Models.NoteColor.Cyan:
-                    return "#1ba1e2";
-                case Models.NoteColor.Cobalt:
-                    return "#0050ef";
-                case Models.NoteColor.Indigo:
-                    return "#6a00ff";
-                case Models.NoteColor.Violet:
-                    return "#aa00ff";
-                case Models.NoteColor.Pink:
-                    return "#dc4fad";
-                case Models.NoteColor.Magenta:
-                    return "#d80073";
-                case Models.NoteColor.Red:
-                    return "#e51400";
-                case Models.NoteColor.Orange:
-                    return "#fa6800";
-                case Models.NoteColor.Brown:
-                    return "#825a2c";
-                case Models.NoteColor.Crimson:
-                    return "#a20025";
-                default:
-                    return "#ffffff";
-            }
-
-        }
+        public string Color { get; set; }
     }
 
     public enum NoteColor
