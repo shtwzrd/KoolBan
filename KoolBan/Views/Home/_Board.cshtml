@@ -48,14 +48,14 @@
     <table class="kanban-table">
         <thead>
             <tr>
-                <!-- ko foreach: Columns() -->
+                <!-- ko foreach: ColumnsOrdered() -->
 
                 <th class="kanban columnhead">
                     <h3 class="kanban h3">
                         <span data-bind="text: ColumnName"></span>
-                        <span data-bind="if: Capacity > 0">
+                        <span data-bind="if: Capacity() > 0">
                             <small class="restriction">
-                                [<!-- ko text: Notes.length --><!-- /ko -->/<span class="limit"><!-- ko text: Capacity --><!-- /ko --></span>]
+                                [<!-- ko text: Notes().length --><!-- /ko -->/<span class="limit"><!-- ko text: Capacity() --><!-- /ko --></span>]
                             </small>
                         </span>
                     </h3>
@@ -65,12 +65,12 @@
         </thead>
         <tbody>
             <tr>
-                <!-- ko foreach: Columns() -->
+            <!-- ko foreach: ColumnsOrdered() -->
 
-                <td class="kanban-table">
-                    <div class="metro">
-                        <!-- ko foreach: AutoSortedNotes -->
-                        <div data-bind="css: NoteClass ">
+            <td class="kanban-table" data-bind="attr: { id: 'c' + ColumnId() }">
+                <div class="metro">
+                    <!-- ko foreach: AutoSortedNotes -->
+                    <div data-bind="css: NoteClass, attr: {'id' : 'n' + NoteId() }">
                             <p data-bind="text: Description"></p>
                             <div class="metro tile logo ol-transparent">
                                 <span data-bind="css: NoteLogo()" style="font-family: 'Glyphicons Halflings'"></span>

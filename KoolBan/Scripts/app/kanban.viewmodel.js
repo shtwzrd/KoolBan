@@ -37,6 +37,13 @@
 
     var options = {
         extend: {
+            "{root}": function(model) {
+                model.ColumnsOrdered = ko.computed(function() {
+                    return model.Columns().sort(function(a, b) {
+                        return a.Priority() - b.Priority();
+                    });
+                });
+            },
             "{root}.Columns[i]": function (column) {
                 column.AutoSortedNotes = ko.computed(function () {
                     return column.Notes().sort(function (a, b) {
