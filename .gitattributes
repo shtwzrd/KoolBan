@@ -13,6 +13,7 @@
 *.css     text
 *.cshtml  text
 *.config  text
+*.md      text
 
 # Images should be treated as binary
 # (binary is a macro for -text -diff)
