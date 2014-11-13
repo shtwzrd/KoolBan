@@ -14,9 +14,6 @@ namespace KoolBan.Controllers
             _projectRepository = projectRepository;
         }
 
-        [Route("")]
-        [Route("index")]
-        [Route("{id}")]
         public ActionResult Index(string id = "Demo")
         {
             Project project = _projectRepository.Find(id);
@@ -31,11 +28,10 @@ namespace KoolBan.Controllers
                 Session["project-Authentication"] = "";
                 return View(project);
             }
-            return RedirectToAction("Index");
+            return RedirectToRoute("Demo");
 
         }
 
-        [Route("login")]
 //        [RequireHttps]
         public ActionResult Login()
         {
@@ -45,7 +41,6 @@ namespace KoolBan.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken] // Validate hidden form field from Login.
 //        [RequireHttps] // Enable for secure HTTPS connection
-        [Route("login")]
         public ActionResult Login(string pwd)
         {
             Session["project-Authentication"] = pwd;
@@ -60,14 +55,12 @@ namespace KoolBan.Controllers
             return View();
         }
 
-        [Route("about")]
         public ActionResult About()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("create/{id}")]
         public ActionResult Create(Project project)
         {
             if (ModelState.IsValid)

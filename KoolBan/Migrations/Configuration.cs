@@ -86,6 +86,7 @@ namespace KoolBan.Migrations
                 new Note { NoteId = 37, ColumnId = 7, Description = "Clean all windows", Logo = "tasks", Color = "Indigo" },
                 new Note { NoteId = 38, ColumnId = 8, Description = "Learn how to juggle", Logo = "tasks", Color = "Violet" }
             );            
+
         }
     }
 }
