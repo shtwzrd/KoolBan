@@ -9,7 +9,6 @@
 <div class="jumbotron kanban" style="overflow-x: auto; width: 100%;">
 
     <!-- ko if: Loading() == false -->
-    <span data-bind="text: JSON.stringify(ko.toJS($data), null, 2)"></span>
     <div data-bind="template: { name: 'kanban-template', data: model }"></div>
     <!-- /ko -->
 </div>
@@ -46,8 +45,6 @@
 </div>
 
 <script type="text/html" id="kanban-template">
-
-    <span data-bind="text: JSON.stringify(ko.toJS($data), null, 2)"></span>
     <table class="kanban-table">
         <thead>
             <tr>

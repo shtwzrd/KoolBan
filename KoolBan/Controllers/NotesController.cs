@@ -1,26 +1,26 @@
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using KoolBan.Models;
 using KoolBan.Models.Abstract;
 using Newtonsoft.Json;
 
 namespace KoolBan.Controllers
 {
-    public class ProjectsController : Controller
+    public class NotesController : Controller
     {
-        private readonly IProjectRepository _projectRepository;
+        private readonly INoteRepository _noteRepository;
 
-        public ProjectsController(IProjectRepository projectRepository)
+        public NotesController(INoteRepository noteRepository)
         {
-            _projectRepository = projectRepository;
+            _noteRepository = noteRepository;
         }
 
         [HttpPost]
-        public JsonResult CreateProject(Project project)
+        public JsonResult CreateNote(Note note)
         {
             if (ModelState.IsValid)
             {
-                _projectRepository.Create(project);
-                _projectRepository.Save();
+                _noteRepository.Create(note);
+                _noteRepository.Save();
 
                 return Json(new { result = "HttpPost Successful" });
             }
@@ -29,13 +29,13 @@ namespace KoolBan.Controllers
         }
 
         [HttpGet]
-        public JsonResult ReadProject(string projectId)
+        public JsonResult ReadNote(int noteId)
         {
-            var project = _projectRepository.Find(projectId);
+            Note note = _noteRepository.Find(noteId);
 
             var result = new JsonNetResult
             {
-                Data = project,
+                Data = note,
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet,
                 Settings = { ReferenceLoopHandling = ReferenceLoopHandling.Ignore }
             };
@@ -43,17 +43,27 @@ namespace KoolBan.Controllers
         }
 
         [HttpPost]
-        public JsonResult UpdateProject(Project project)
+        public JsonResult UpdateNote(Note note)
         {
             if (ModelState.IsValid)
             {
-                _projectRepository.Edit(project);
-                _projectRepository.Save();
+                _noteRepository.Edit(note);
+                _noteRepository.Save();
 
                 return Json(new { result = "HttpPost Successful" });
             }
 
             return Json(new { result = "HttpPost Failed" });
         }
+
+        [HttpPost]
+        public JsonResult DeleteNote(int noteId)
+        {
+            _noteRepository.Delete(noteId);
+            _noteRepository.Save();
+
+            return Json(new {result = "HttpPost Successful"});
+        }
     }
+
 }

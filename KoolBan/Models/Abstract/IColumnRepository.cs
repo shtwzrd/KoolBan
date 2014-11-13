@@ -1,6 +1,6 @@
 ﻿namespace KoolBan.Models.Abstract
 {
-    interface IColumnRepository
+    public interface IColumnRepository
     {
         Column Find(int id);
         void Delete(int id);

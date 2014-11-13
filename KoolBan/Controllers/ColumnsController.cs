@@ -1,3 +1,4 @@
+﻿
 using System.Web.Mvc;
 using KoolBan.Models;
 using KoolBan.Models.Abstract;
@@ -5,22 +6,22 @@ using Newtonsoft.Json;
 
 namespace KoolBan.Controllers
 {
-    public class ProjectsController : Controller
+    public class ColumnsController : Controller
     {
-        private readonly IProjectRepository _projectRepository;
+        private readonly IColumnRepository _columnRepository;
 
-        public ProjectsController(IProjectRepository projectRepository)
+        public ColumnsController(IColumnRepository columnRepository)
         {
-            _projectRepository = projectRepository;
+            _columnRepository = columnRepository;
         }
 
         [HttpPost]
-        public JsonResult CreateProject(Project project)
+        public JsonResult CreateColumn(Column column)
         {
             if (ModelState.IsValid)
             {
-                _projectRepository.Create(project);
-                _projectRepository.Save();
+                _columnRepository.Create(column);
+                _columnRepository.Save();
 
                 return Json(new { result = "HttpPost Successful" });
             }
@@ -29,13 +30,13 @@ namespace KoolBan.Controllers
         }
 
         [HttpGet]
-        public JsonResult ReadProject(string projectId)
+        public JsonResult ReadColumn(int columnId)
         {
-            var project = _projectRepository.Find(projectId);
+            Column column = _columnRepository.Find(columnId);
 
             var result = new JsonNetResult
             {
-                Data = project,
+                Data = column,
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet,
                 Settings = { ReferenceLoopHandling = ReferenceLoopHandling.Ignore }
             };
@@ -43,17 +44,26 @@ namespace KoolBan.Controllers
         }
 
         [HttpPost]
-        public JsonResult UpdateProject(Project project)
+        public JsonResult UpdateColumn(Column column)
         {
             if (ModelState.IsValid)
             {
-                _projectRepository.Edit(project);
-                _projectRepository.Save();
+                _columnRepository.Edit(column);
+                _columnRepository.Save();
 
                 return Json(new { result = "HttpPost Successful" });
             }
 
             return Json(new { result = "HttpPost Failed" });
+        }
+
+        [HttpPost]
+        public JsonResult DeleteColumn(int columnId)
+        {
+            _columnRepository.Delete(columnId);
+            _columnRepository.Save();
+
+            return Json(new { result = "HttpPost Successful" });
         }
     }
 }

@@ -14,14 +14,14 @@
     // Data
 
     // Data access operations
-    self.getColumns = function (callback) {
+    self.readProject = function (callback) {
 
         function getData() {
             return $.ajax({
                 method: 'get',
                 ifModified: true,
                 data: { projectId: self.projectId },
-                url: '/Projects/GetProjectColumnsJson',
+                url: '/Projects/ReadProject',
                 contentType: "application/json; charset=utf-8",
             });
         }

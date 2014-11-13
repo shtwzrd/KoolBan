@@ -11,8 +11,7 @@
 
     self.handleColumnData = function (result) {
 
-        self.model = ko.viewmodel.fromModel(input = { Columns: result }, options);
-        console.log(self.model.Columns());
+        self.model = ko.viewmodel.fromModel(result, options);
         self.Loading(false);
         self.Loading.notifySubscribers();
 
@@ -28,7 +27,7 @@
         app.refreshUI();
     }
 
-    app.dataModel.getColumns(self.handleColumnData);
+    app.dataModel.readProject(self.handleColumnData);
 
     /*
     var hollabackgurl = function(back) {
