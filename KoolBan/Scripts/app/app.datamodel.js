@@ -14,7 +14,7 @@
     // Data
 
     // Data access operations --> Projects
-    self.createProject = function (callback, message) {
+    self.createProject = function (message, callback) {
         function sendData() {
             return $.ajax({
                 method: 'post',
@@ -41,7 +41,7 @@
         return getData().done(callback);
     }
 
-    self.updateProject = function (callback, message) {
+    self.updateProject = function (message, callback) {
         function sendData() {
             return $.ajax({
                 method: 'post',
@@ -68,7 +68,7 @@
         return sendData().done(callback);
     }
 
-    self.readColumn = function (callback, message) {
+    self.readColumn = function (message, callback) {
         function getData() {
             return $.ajax({
                 method: 'get',
@@ -82,11 +82,11 @@
         return getData().done(callback);
     }
 
-    self.updateColumn = function (callback, message) {
+    self.updateColumn = function (message, callback) {
         function sendData() {
             return $.ajax({
                 method: 'post',
-                data: message ,
+                data: JSON.stringify(message) ,
                 url: '/Columns/UpdateColumn',
                 contentType: "application/json; charset=utf-8",
             });
@@ -95,7 +95,7 @@
         return sendData().done(callback);
     }
 
-    self.deleteColumn = function (callback, message) {
+    self.deleteColumn = function (message, callback) {
         function sendData() {
             return $.ajax({
                 method: 'post',
@@ -114,7 +114,7 @@
             return $.ajax({
                 method: 'post',
                 data: message,
-                url: '/Notes/CreatNotes',
+                url: '/Notes/CreateNotes',
                 contentType: "application/json; charset=utf-8",
             });
         }
@@ -122,7 +122,7 @@
         return sendData().done(callback);
     }
 
-    self.readNote = function (callback, message) {
+    self.readNote = function (message, callback) {
         function getData() {
             return $.ajax({
                 method: 'get',
@@ -136,7 +136,7 @@
         return getData().done(callback);
     }
 
-    self.updateNote = function (callback, message) {
+    self.updateNote = function (message, callback) {
         function sendData() {
             return $.ajax({
                 method: 'post',
@@ -149,7 +149,7 @@
         return sendData().done(callback);
     }
 
-    self.deleteNote = function (callback, message) {
+    self.deleteNote = function (message, callback) {
         function sendData() {
             return $.ajax({
                 method: 'post',

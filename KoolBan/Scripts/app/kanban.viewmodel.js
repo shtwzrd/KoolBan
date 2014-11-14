@@ -45,10 +45,14 @@
         if (newModel.Columns[newColumnIndex].Capacity == 0 ||
             newModel.Columns[newColumnIndex].Notes.length < newModel.Columns[newColumnIndex].Capacity) {
             var noteModel = newModel.Columns[formerColumnIndex].Notes.splice(noteIndex, 1)[0];
+            noteModel.ColumnId = newModel.Columns[newColumnIndex].ColumnId;
             newModel.Columns[newColumnIndex].Notes.push(noteModel);
 
             ko.viewmodel.updateFromModel(self.model, newModel);
             self.refreshBoard();
+
+            app.dataModel.updateColumn(newModel.Columns[formerColumnIndex]);
+            app.dataModel.updateColumn(newModel.Columns[newColumnIndex]);
 
             return true;
         }
