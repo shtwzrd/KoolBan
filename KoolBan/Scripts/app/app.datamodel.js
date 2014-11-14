@@ -10,6 +10,23 @@
     // Other private operations
 
     // Operations
+    self.startPolling = function(callback) {
+
+        (function poll() {
+            setTimeout(function() {
+                $.ajax({
+                    url: "/Projects/ReadProject",
+                    data: { projectId: self.projectId },
+                    success: function(data) {
+                        callback(data);
+                        //Setup the next poll recursively
+                        poll();
+                    },
+                    dataType: "json"
+                });
+            }, 3000);
+        })();
+    }
 
     // Data
 
@@ -18,7 +35,7 @@
         function sendData() {
             return $.ajax({
                 method: 'post',
-                data: message ,
+                data: message,
                 url: '/Projects/CreateProject',
                 contentType: "application/json; charset=utf-8",
             });
@@ -59,7 +76,7 @@
         function sendData() {
             return $.ajax({
                 method: 'post',
-                data: message ,
+                data: message,
                 url: '/Columns/CreateColumn',
                 contentType: "application/json; charset=utf-8",
             });
@@ -86,7 +103,7 @@
         function sendData() {
             return $.ajax({
                 method: 'post',
-                data: JSON.stringify(message) ,
+                data: JSON.stringify(message),
                 url: '/Columns/UpdateColumn',
                 contentType: "application/json; charset=utf-8",
             });
@@ -99,7 +116,7 @@
         function sendData() {
             return $.ajax({
                 method: 'post',
-                data: message ,
+                data: message,
                 url: '/Columns/DeleteColumn',
                 contentType: "application/json; charset=utf-8",
             });

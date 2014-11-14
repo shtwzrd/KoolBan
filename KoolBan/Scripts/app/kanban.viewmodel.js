@@ -17,7 +17,6 @@
     app.dataModel.projectId = self.projectId;
     app.dataModel.readProject(self.handleInit);
 
-
     // Behavior
 
 
@@ -49,6 +48,7 @@
             newModel.Columns[newColumnIndex].Notes.push(noteModel);
 
             ko.viewmodel.updateFromModel(self.model, newModel);
+            console.log(JSON.stringify(newModel));
             self.refreshBoard();
 
             app.dataModel.updateColumn(newModel.Columns[formerColumnIndex]);
@@ -58,6 +58,13 @@
         }
 
         return false;
+    }
+
+    self.updateViewModel = function (data) {
+        console.log(data);
+        console.log(JSON.stringify(data));
+        ko.viewmodel.updateFromModel(self.model, data);
+        self.refreshBoard();
     }
 
     self.refreshBoard = function () {
@@ -82,6 +89,8 @@
             }
         });
     };
+
+    app.dataModel.startPolling(self.updateViewModel);
 
     /*  Mapping the model to an observable */
     var options = {
