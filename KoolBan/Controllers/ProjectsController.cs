@@ -15,6 +15,7 @@ namespace KoolBan.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public JsonResult CreateProject(Project project)
         {
             if (ModelState.IsValid)
@@ -29,6 +30,7 @@ namespace KoolBan.Controllers
         }
 
         [HttpGet]
+        [ValidateAntiForgeryToken]
         public JsonResult ReadProject(string projectId)
         {
             var project = _projectRepository.Find(projectId);
@@ -43,6 +45,7 @@ namespace KoolBan.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public JsonResult UpdateProject(Project project)
         {
             if (ModelState.IsValid)
