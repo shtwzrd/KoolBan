@@ -29,7 +29,6 @@ namespace KoolBan.Controllers
                 return View(project);
             }
             return RedirectToRoute("Demo");
-
         }
 
 //        [RequireHttps]
@@ -61,6 +60,7 @@ namespace KoolBan.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Project project)
         {
             if (ModelState.IsValid)
