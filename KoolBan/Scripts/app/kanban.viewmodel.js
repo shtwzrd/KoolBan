@@ -42,11 +42,18 @@
             }
         }
 
-        var noteModel = newModel.Columns[formerColumnIndex].Notes.splice(noteIndex, 1)[0];
-        newModel.Columns[newColumnIndex].Notes.push(noteModel);
+        if (newModel.Columns[newColumnIndex].Capacity == 0 ||
+            newModel.Columns[newColumnIndex].Notes.length < newModel.Columns[newColumnIndex].Capacity) {
+            var noteModel = newModel.Columns[formerColumnIndex].Notes.splice(noteIndex, 1)[0];
+            newModel.Columns[newColumnIndex].Notes.push(noteModel);
 
-        ko.viewmodel.updateFromModel(self.model, newModel);
-        self.refreshBoard();
+            ko.viewmodel.updateFromModel(self.model, newModel);
+            self.refreshBoard();
+
+            return true;
+        }
+
+        return false;
     }
 
     self.refreshBoard = function () {
@@ -59,7 +66,9 @@
             accept: '.tile.main',
             tolerance: 'pointer',
             drop: function (event, ui) {
-                self.onDropNote(ui.draggable[0], event.target);
+                if (!self.onDropNote(ui.draggable[0], event.target)) {
+                    ui.draggable.draggable('option', 'revert', true);
+                }
             },
             over: function (event, ui) {
                 $('#log').text('over');
@@ -69,7 +78,6 @@
             }
         });
     };
-
 
     /*  Mapping the model to an observable */
     var options = {
