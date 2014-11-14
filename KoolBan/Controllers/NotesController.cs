@@ -15,7 +15,6 @@ namespace KoolBan.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public JsonResult CreateNote(Note note)
         {
             if (ModelState.IsValid)
@@ -44,7 +43,6 @@ namespace KoolBan.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public JsonResult UpdateNote(Note note)
         {
             if (ModelState.IsValid)
@@ -59,7 +57,6 @@ namespace KoolBan.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public JsonResult DeleteNote(int noteId)
         {
             _noteRepository.Delete(noteId);

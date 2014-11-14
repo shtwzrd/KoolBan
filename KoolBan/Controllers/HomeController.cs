@@ -29,7 +29,6 @@ namespace KoolBan.Controllers
                 return View(project);
             }
             return RedirectToRoute("Demo");
-
         }
 
 //        [RequireHttps]

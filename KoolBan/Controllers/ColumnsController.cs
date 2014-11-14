@@ -16,7 +16,6 @@ namespace KoolBan.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public JsonResult CreateColumn(Column column)
         {
             if (ModelState.IsValid)
@@ -45,7 +44,6 @@ namespace KoolBan.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public JsonResult UpdateColumn(Column column)
         {
             if (ModelState.IsValid)
@@ -60,7 +58,6 @@ namespace KoolBan.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public JsonResult DeleteColumn(int columnId)
         {
             _columnRepository.Delete(columnId);
