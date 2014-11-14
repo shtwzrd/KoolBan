@@ -59,19 +59,19 @@ namespace KoolBan.Controllers
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Project project)
-        {
-            if (ModelState.IsValid)
-            {
-                project.Password = PasswordHash.CreateHash(project.Password);
-                _projectRepository.Create(project);
-                _projectRepository.Save();
-                return RedirectToAction("Index", new { id = project.ProjectId });
-            }
-
-            return View("Index");
-        }
+//        [HttpPost]
+//        [ValidateAntiForgeryToken]
+//        public ActionResult Create(Project project)
+//        {
+//            if (ModelState.IsValid)
+//            {
+//                project.Password = PasswordHash.CreateHash(project.Password);
+//                _projectRepository.Create(project);
+//                _projectRepository.Save();
+//                return RedirectToAction("Index", new { id = project.ProjectId });
+//            }
+//
+//            return View("Index");
+//        }
     }
 }
