@@ -19,28 +19,6 @@
     // UI state
 
     // UI operations
-    self.refreshUI = function () {
-        $('.tile.main').draggable({
-            revert: 'invalid',
-            snap: '.kanban td',
-            stack: "div",
-        });
-
-        $('.kanban td').droppable({
-            accept: '.tile.main',
-            tolerance: 'pointer',
-            drop: function (event, ui) {
-                alert('inside');
-            },
-            over: function (event, ui) {
-                $('#log').text('over');
-            },
-            out: function (event, ui) {
-                $('#log').text('out');
-            }
-        });
-    };
-
 
     // Other navigateToX functions are added dynamically by app.addViewModel(...).
     // Other operations

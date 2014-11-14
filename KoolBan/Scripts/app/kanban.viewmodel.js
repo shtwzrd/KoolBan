@@ -1,45 +1,82 @@
 ﻿function KanbanViewModel() {
+
     var self = this;
     self.projectId = $('#projectId')[0].value;
-    self.model = ko.observable({
-        Columns: ko.observableArray([]),
-    });
-
+    self.model = null;
     self.Loading = ko.observable(true);
 
-    app.dataModel.projectId = self.projectId;
-
-    self.handleColumnData = function (result) {
+    self.handleInit = function (result) {
 
         self.model = ko.viewmodel.fromModel(result, options);
         self.Loading(false);
-        self.Loading.notifySubscribers();
 
-        self.model.Columns()[0].Notes.pop();
-
-        /* Tests removing a note  
-        app.dataModel.setColumns({
-            Columns: self.columns(),
-            ProjectId: self.projectId
-        },
-        hollabackgurl);
-        */
-        app.refreshUI();
+        self.refreshBoard();
     }
 
-    app.dataModel.readProject(self.handleColumnData);
+    // Get the initial project Json from the server 
+    app.dataModel.projectId = self.projectId;
+    app.dataModel.readProject(self.handleInit);
 
-    /*
-    var hollabackgurl = function(back) {
-        alert(back.toString());
-        console.log(back);
-    } */
 
+    // Behavior
+
+
+    self.onDropNote = function (note, column) {
+        var noteId = note.id.slice(1);
+        var columnId = column.id.slice(1);
+        var formerColumnIndex = null;
+        var newColumnIndex = null;
+        var noteIndex = null;
+
+        var newModel = ko.viewmodel.toModel(self.model);
+
+        for (var i = 0; i < newModel.Columns.length; i++) {
+            for (var j = 0; j < newModel.Columns[i].Notes.length; j++) {
+                if (newModel.Columns[i].Notes[j].NoteId == noteId) {
+                    formerColumnIndex = i;
+                    noteIndex = j;
+                }
+                if (newModel.Columns[i].ColumnId == columnId) {
+                    newColumnIndex = i;
+                }
+            }
+        }
+
+        var noteModel = newModel.Columns[formerColumnIndex].Notes.splice(noteIndex, 1)[0];
+        newModel.Columns[newColumnIndex].Notes.push(noteModel);
+
+        ko.viewmodel.updateFromModel(self.model, newModel);
+        self.refreshBoard();
+    }
+
+    self.refreshBoard = function () {
+        $('.tile.main').draggable({
+            revert: 'invalid',
+            stack: "div",
+        });
+
+        $('.kanban td').droppable({
+            accept: '.tile.main',
+            tolerance: 'pointer',
+            drop: function (event, ui) {
+                self.onDropNote(ui.draggable[0], event.target);
+            },
+            over: function (event, ui) {
+                $('#log').text('over');
+            },
+            out: function (event, ui) {
+                $('#log').text('out');
+            }
+        });
+    };
+
+
+    /*  Mapping the model to an observable */
     var options = {
         extend: {
-            "{root}": function(model) {
-                model.ColumnsOrdered = ko.computed(function() {
-                    return model.Columns().sort(function(a, b) {
+            "{root}": function (model) {
+                model.ColumnsOrdered = ko.computed(function () {
+                    return model.Columns().sort(function (a, b) {
                         return a.Priority() - b.Priority();
                     });
                 });
