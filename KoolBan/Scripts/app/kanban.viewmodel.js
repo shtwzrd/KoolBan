@@ -60,8 +60,8 @@
 
     self.updateViewModel = function (data) {
         if (!self.lockUpdate) {
-   //         ko.viewmodel.updateFromModel(self.model, data);
-   //         self.refreshBoard();
+            ko.viewmodel.updateFromModel(self.model, data);
+            self.refreshBoard();
         }
     }
 

@@ -35,7 +35,7 @@
         function sendData() {
             return $.ajax({
                 method: 'post',
-                data: message,
+                data: JSON.stringify(message),
                 url: '/Projects/CreateProject',
                 contentType: "application/json; charset=utf-8",
             });
@@ -48,7 +48,6 @@
         function getData() {
             return $.ajax({
                 method: 'get',
-                ifModified: true,
                 data: { projectId: self.projectId },
                 url: '/Projects/ReadProject',
                 contentType: "application/json; charset=utf-8",
@@ -62,7 +61,7 @@
         function sendData() {
             return $.ajax({
                 method: 'post',
-                data: message,
+                data: JSON.stringify(message),
                 url: '/Projects/UpdateProject',
                 contentType: "application/json; charset=utf-8",
             });
@@ -72,11 +71,11 @@
     }
 
     // Data access operations --> Columns
-    self.createColumn = function (callback) {
+    self.createColumn = function (message, callback) {
         function sendData() {
             return $.ajax({
                 method: 'post',
-                data: message,
+                data: JSON.stringify(message),
                 url: '/Columns/CreateColumn',
                 contentType: "application/json; charset=utf-8",
             });
@@ -90,7 +89,7 @@
             return $.ajax({
                 method: 'get',
                 ifModified: true,
-                data: message,
+                data: {ColumnId : message},
                 url: '/Columns/ReadColumn',
                 contentType: "application/json; charset=utf-8",
             });
@@ -116,7 +115,7 @@
         function sendData() {
             return $.ajax({
                 method: 'post',
-                data: message,
+                data: {ColumnId : message},
                 url: '/Columns/DeleteColumn',
                 contentType: "application/json; charset=utf-8",
             });
@@ -126,11 +125,11 @@
     }
 
     // Data access operations --> Notes
-    self.createNote = function (callback) {
+    self.createNote = function (message, callback) {
         function sendData() {
             return $.ajax({
                 method: 'post',
-                data: message,
+                data: JSON.stringify(message),
                 url: '/Notes/CreateNotes',
                 contentType: "application/json; charset=utf-8",
             });
@@ -144,7 +143,7 @@
             return $.ajax({
                 method: 'get',
                 ifModified: true,
-                data: message,
+                data: {NoteId: message},
                 url: '/Notes/ReadNote',
                 contentType: "application/json; charset=utf-8",
             });
@@ -170,7 +169,7 @@
         function sendData() {
             return $.ajax({
                 method: 'post',
-                data: message,
+                data: {NoteId: message},
                 url: '/Notes/DeleteNote',
                 contentType: "application/json; charset=utf-8",
             });
