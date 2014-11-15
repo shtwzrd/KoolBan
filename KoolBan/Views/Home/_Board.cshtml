@@ -1,5 +1,5 @@
 ﻿@using KoolBan.Models
-<!-- ko with: board -->
+<!-- ko with: dataModel -->
 <div class="metro" style="margin: 0;">
     <div class="container">
         <div class="heading"><h1 data_bind="valueWithInit: 'projectId'">@Model.ProjectId</h1></div>
@@ -22,7 +22,7 @@
 <div class="jumbotron kanban" style="overflow-x: auto; width: 100%;">
 
     <!-- ko if: Loading() == false -->
-    <div data-bind="template: { name: 'kanban-template', data: model }"></div>
+    <div data-bind="template: { name: 'kanban-template', data: project }"></div>
     <!-- /ko -->
 </div>
 

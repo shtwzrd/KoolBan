@@ -1,33 +1,29 @@
 ﻿function KanbanViewModel() {
 
     var self = this;
-    self.projectId = $('#projectId')[0].value;
-    self.model = null;
-    self.Loading = ko.observable(true);
-    self.lockUpdate = false;
-
-    self.handleInit = function (result) {
-
-        self.model = ko.viewmodel.fromModel(result, options);
-        self.Loading(false);
-
-        self.refreshBoard();
-    }
+    app.dataModel.projectId = $('#projectId')[0].value;
 
     // Get the initial project Json from the server 
-    app.dataModel.projectId = self.projectId;
-    app.dataModel.readProject(self.handleInit);
+
+    self.updateUI = function () {
+        if (!self.lockUpdate) {
+            self.refreshBoard();
+        }
+    }
+
+    app.dataModel.startPolling(self.updateUI);
 
     // Behavior
 
     self.onDropNote = function (note, column) {
         var noteId = note.id.slice(1);
         var columnId = column.id.slice(1);
+        alert(columnId);
         var formerColumnIndex = null;
         var newColumnIndex = null;
         var noteIndex = null;
 
-        var newModel = ko.viewmodel.toModel(self.model);
+        var newModel = ko.viewmodel.toModel(app.dataModel.project);
 
         for (var i = 0; i < newModel.Columns.length; i++) {
             for (var j = 0; j < newModel.Columns[i].Notes.length; j++) {
@@ -47,7 +43,8 @@
             noteModel.ColumnId = newModel.Columns[newColumnIndex].ColumnId;
             newModel.Columns[newColumnIndex].Notes.push(noteModel);
 
-            ko.viewmodel.updateFromModel(self.model, newModel);
+            app.dataModel.updateMe(newModel);
+
             self.refreshBoard();
 
             app.dataModel.updateNote(noteModel);
@@ -58,25 +55,19 @@
         return false;
     }
 
-    self.updateViewModel = function (data) {
-        if (!self.lockUpdate) {
-            ko.viewmodel.updateFromModel(self.model, data);
-            self.refreshBoard();
-        }
-    }
-
     self.refreshBoard = function () {
         $('.tile.main').draggable({
             revert: 'invalid',
             stack: "div",
-            start: function (event, ui) { self.lockUpdate = true; },
-            stop: function (event, ui) { self.lockUpdate = false; },
+            start: function (event, ui) { app.dataModel.lockUpdate = true; },
+            stop: function (event, ui) { app.dataModel.lockUpdate = false; },
         });
 
         $('.kanban td').droppable({
             accept: '.tile.main',
             tolerance: 'pointer',
             drop: function (event, ui) {
+                app.dataModel.lockUpdate = false;
                 if (!self.onDropNote(ui.draggable[0], event.target)) {
                     ui.draggable.draggable('option', 'revert', true);
                 }
@@ -92,48 +83,6 @@
         Win8Modal.install();
     };
 
-    app.dataModel.startPolling(self.updateViewModel);
-
-    /*  Mapping the model to an observable */
-    var options = {
-        extend: {
-            "{root}": function (model) {
-                model.ColumnsOrdered = ko.computed(function () {
-                    return model.Columns().sort(function (a, b) {
-                        return a.Priority() - b.Priority();
-                    });
-                });
-            },
-            "{root}.Columns[i]": function (column) {
-                column.AutoSortedNotes = ko.computed(function () {
-                    return column.Notes().sort(function (a, b) {
-                        return b.Description().length - a.Description().length;
-                    });
-                });
-            },
-            "{root}.Columns[i].Notes[i]": function (note) {
-                note.NoteClass = ko.computed(function () {
-                    var markup = "tile ";
-                    if (note.Description().length > 40) {
-                        markup += "double ";
-                    }
-                    if (note.Description().length > 106) {
-                        markup += "double-vertical ";
-                    }
-                    markup += "bg-dark" + note.Color();
-                    markup += " main";
-
-                    return markup;
-                });
-                note.NoteLogo = ko.computed(function () {
-                    var logo = "glyphicon glyphicon-";
-                    logo += note.Logo();
-                    return logo;
-                });
-                return note;
-            }
-        }
-    };
 
 }
 

@@ -1,6 +1,7 @@
 ﻿function AppViewModel(dataModel) {
     // Private state
     var self = this;
+    self.dataModel = dataModel;
 
     // Private operations
     function cleanUpLocation() {
@@ -14,7 +15,6 @@
     self.Views = {
         Loading: {} // Other views are added dynamically by app.addViewModel(...).
     };
-    self.dataModel = dataModel;
 
     // UI state
 
@@ -54,6 +54,7 @@
     };
 
     self.initialize = function () {
+
         Path.listen();
     }
 }

@@ -4,6 +4,10 @@ Path.map("#/stuff").to(function() {
     alert("poop");
 });
 
+Path.map("#/AddNote").to(function() {
+
+});
+
 //Entry point
 (function ($) {
     app.initialize();
