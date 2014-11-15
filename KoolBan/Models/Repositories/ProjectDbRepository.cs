@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using KoolBan.Models.Abstract;
 
 namespace KoolBan.Models.Repositories
@@ -27,5 +28,4 @@ namespace KoolBan.Models.Repositories
             _dbContext.SaveChanges();
         }
     }
-    
 }

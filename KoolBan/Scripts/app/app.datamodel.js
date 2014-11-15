@@ -157,7 +157,7 @@
         function sendData() {
             return $.ajax({
                 method: 'post',
-                data: message,
+                data: JSON.stringify(message),
                 url: '/Notes/UpdateNote',
                 contentType: "application/json; charset=utf-8",
             });

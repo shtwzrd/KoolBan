@@ -4,6 +4,7 @@
     self.projectId = $('#projectId')[0].value;
     self.model = null;
     self.Loading = ko.observable(true);
+    self.lockUpdate = false;
 
     self.handleInit = function (result) {
 
@@ -18,7 +19,6 @@
     app.dataModel.readProject(self.handleInit);
 
     // Behavior
-
 
     self.onDropNote = function (note, column) {
         var noteId = note.id.slice(1);
@@ -48,11 +48,9 @@
             newModel.Columns[newColumnIndex].Notes.push(noteModel);
 
             ko.viewmodel.updateFromModel(self.model, newModel);
-            console.log(JSON.stringify(newModel));
             self.refreshBoard();
 
-            app.dataModel.updateColumn(newModel.Columns[formerColumnIndex]);
-            app.dataModel.updateColumn(newModel.Columns[newColumnIndex]);
+            app.dataModel.updateNote(noteModel);
 
             return true;
         }
@@ -60,83 +58,85 @@
         return false;
     }
 
-    self.updateViewModel = function (data) {
-        console.log(data);
-        console.log(JSON.stringify(data));
-        ko.viewmodel.updateFromModel(self.model, data);
-        self.refreshBoard();
+    self.updateViewModel = function(data) {
+        if (!self.lockUpdate) {
+            ko.viewmodel.updateFromModel(self.model, data);
+            self.refreshBoard();
+        }
     }
 
     self.refreshBoard = function () {
-        $('.tile.main').draggable({
-            revert: 'invalid',
-            stack: "div",
-        });
+            $('.tile.main').draggable({
+                revert: 'invalid',
+                stack: "div",
+                start: function (event, ui) { self.lockUpdate = true; },
+                stop: function (event, ui) { self.lockUpdate = false; },
+            });
 
-        $('.kanban td').droppable({
-            accept: '.tile.main',
-            tolerance: 'pointer',
-            drop: function (event, ui) {
-                if (!self.onDropNote(ui.draggable[0], event.target)) {
-                    ui.draggable.draggable('option', 'revert', true);
+            $('.kanban td').droppable({
+                accept: '.tile.main',
+                tolerance: 'pointer',
+                drop: function (event, ui) {
+                    if (!self.onDropNote(ui.draggable[0], event.target)) {
+                        ui.draggable.draggable('option', 'revert', true);
+                    }
+                },
+                over: function (event, ui) {
+                    $('#log').text('over');
+                },
+                out: function (event, ui) {
+                    $('#log').text('out');
                 }
-            },
-            over: function (event, ui) {
-                $('#log').text('over');
-            },
-            out: function (event, ui) {
-                $('#log').text('out');
-            }
-        });
-    };
+            });
+        };
 
-    app.dataModel.startPolling(self.updateViewModel);
+        app.dataModel.startPolling(self.updateViewModel);
 
-    /*  Mapping the model to an observable */
-    var options = {
-        extend: {
-            "{root}": function (model) {
-                model.ColumnsOrdered = ko.computed(function () {
-                    return model.Columns().sort(function (a, b) {
-                        return a.Priority() - b.Priority();
+        /*  Mapping the model to an observable */
+        var options = {
+            extend: {
+                "{root}": function (model) {
+                    model.ColumnsOrdered = ko.computed(function () {
+                        return model.Columns().sort(function (a, b) {
+                            return a.Priority() - b.Priority();
+                        });
                     });
-                });
-            },
-            "{root}.Columns[i]": function (column) {
-                column.AutoSortedNotes = ko.computed(function () {
-                    return column.Notes().sort(function (a, b) {
-                        return b.Description().length - a.Description().length;
+                },
+                "{root}.Columns[i]": function (column) {
+                    column.AutoSortedNotes = ko.computed(function () {
+                        return column.Notes().sort(function (a, b) {
+                            return b.Description().length - a.Description().length;
+                        });
                     });
-                });
-            },
-            "{root}.Columns[i].Notes[i]": function (note) {
-                note.NoteClass = ko.computed(function () {
-                    var markup = "tile ";
-                    if (note.Description().length > 40) {
-                        markup += "double ";
-                    }
-                    if (note.Description().length > 106) {
-                        markup += "double-vertical ";
-                    }
-                    markup += "bg-dark" + note.Color();
-                    markup += " main";
+                },
+                "{root}.Columns[i].Notes[i]": function (note) {
+                    note.NoteClass = ko.computed(function () {
+                        var markup = "tile ";
+                        if (note.Description().length > 40) {
+                            markup += "double ";
+                        }
+                        if (note.Description().length > 106) {
+                            markup += "double-vertical ";
+                        }
+                        markup += "bg-dark" + note.Color();
+                        markup += " main";
 
-                    return markup;
-                });
-                note.NoteLogo = ko.computed(function () {
-                    var logo = "glyphicon glyphicon-";
-                    logo += note.Logo();
-                    return logo;
-                });
-                return note;
+                        return markup;
+                    });
+                    note.NoteLogo = ko.computed(function () {
+                        var logo = "glyphicon glyphicon-";
+                        logo += note.Logo();
+                        return logo;
+                    });
+                    return note;
+                }
             }
-        }
-    };
+        };
 
-}
+    }
 
-app.addViewModel({
-    name: "Home",
-    bindingMemberName: "board",
-    factory: KanbanViewModel
-});
+    app.addViewModel({
+        name: "Home",
+        bindingMemberName: "board",
+        factory: KanbanViewModel
+    });
