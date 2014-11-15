@@ -270,3 +270,18 @@ textarea {
     background-color: #7C40A2 !important;
     color: #FFF !important;
 }
+
+.metro .button-set button {
+  display: block;
+  float: left;
+  margin: 1px;
+  margin-right: 1px;
+}
+
+.metro .button-set button.active {
+    outline: 2px solid #000000
+}
+
+#notResizable {
+    resize: none
+;}

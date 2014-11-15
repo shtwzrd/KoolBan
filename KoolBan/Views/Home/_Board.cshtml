@@ -5,33 +5,34 @@
         <div class="heading"><h1 data_bind="valueWithInit: 'projectId'">@Model.ProjectId</h1></div>
         <input id="projectId" value=@Model.ProjectId style="visibility: hidden"> <!--retrieved by the client-side viewmodel-->
         <div class="right">
-            <button type="button" class="command-button success" data-wm-role="open">
-                <i class="glyphicon glyphicon-edit"></i>
-                Add another note
-                <small> </small>
+            <button type="button" style="width: 250px; margin-right: 25px; background-color: #60a917; color: #ffffff;" class="command-button" data-wm-role="open">
+                <i class="glyphicon glyphicon-pencil note"></i>
+                Add a new note
+                <small></small>
             </button>
-
-            <button class="command-button warning">
-                <i class="glyphicon glyphicon-cog"></i>
+            <button style="width: 250px; margin-right: 25px; background-color: #fa6800; color: #ffffff;" class="command-button" data-wm-role="open">
+                <i class="glyphicon glyphicon-edit"></i>
                 Add a new column
+                <small></small>
+            </button>
+            <button style="width: 250px; margin-right: 25px; background-color: #a20025; color: #ffffff;" class="command-button">
+                <i class="glyphicon glyphicon-cog"></i>
+                Edit project
                 <small></small>
             </button>
         </div>
     </div>
 </div>
 <div class="jumbotron kanban" style="overflow-x: auto; width: 100%;">
-
     <!-- ko if: Loading() == false -->
     <div data-bind="template: { name: 'kanban-template', data: project }"></div>
     <!-- /ko -->
 </div>
-
 <script type="text/html" id="kanban-template">
     <table class="kanban-table">
         <thead>
             <tr>
                 <!-- ko foreach: ColumnsOrdered() -->
-
                 <th class="kanban columnhead">
                     <h3 class="kanban h3">
                         <span data-bind="text: ColumnName"></span>
@@ -48,7 +49,6 @@
         <tbody>
             <tr>
                 <!-- ko foreach: ColumnsOrdered() -->
-
                 <td class="kanban-table" data-bind="attr: { id: 'c' + ColumnId() }">
                     <div class="metro">
                         <!-- ko foreach: AutoSortedNotes -->
@@ -64,108 +64,115 @@
                         <!-- /ko -->
                     </div>
                 </td>
-
                 <!-- /ko -->
         </tbody>
     </table>
-
 </script>
 <!-- /ko -->
-
 <!-- Edite Note Modal -->
 <div class="win8modal" id="addNoteModal" tabindex="-1" role="dialog">
     <div class="metro">
-        <div class="container">
-
+        <div style="background-color: #ffffff" class="container" align="center">
             <form>
                 <fieldset>
-                    <legend>Add a note</legend>
-                    <div class="input-control select">
-                        <h5>Color</h5>
-                        <select>
-                            @foreach (NoteColor c in Enum.GetValues(typeof(NoteColor)))
+                    <legend style="background-color: #60a917; color: #ffffff"><i class="glyphicon glyphicon-pencil"></i> Add a new note</legend>
+
+                    <div class="input-control text" data-role="input-control">
+                        <h5>Description</h5>
+                        <textarea id="notResizable" placeholder="Explain the task" type="text" cols="50" rows="3"></textarea>
+                    </div>
+
+                    <div style="margin-top: 75px"></div>
+
+
+                    <h5>Color</h5>
+                    <div class="button-set" data-role="button-group" style="max-width: 300px;">
+                        @foreach (NoteColor c in Enum.GetValues(typeof(NoteColor)))
+                        {
+                            if (c == NoteColor.Green)
                             {
-                                <option style="color:#fff; background-color:@Note.NoteColorToHex(c)">@c.ToString()</option>
+                                <button class="active" style="width: 40px; height: 27px; background-color: @Note.NoteColorToHex(c)"></button>
                             }
-                        </select>
+                            else
+                            {
+                                <button style="width: 40px; height: 27px; background-color: @Note.NoteColorToHex(c)"></button>
+                            }
+                        }
                     </div>
 
                     <h5>Logo</h5>
                     <div class="button-set" data-role="button-group" style="max-width: 300px;">
                         <button class="active" style="width:40px; height:26px"></button>
+                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-cog"></span></button>
+                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-plus"></span></button>
+                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-minus"></span></button>
+                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-cloud"></span></button>
+                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-envelope"></span></button>
+                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-pencil"></span></button>
                         <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-music"></span></button>
                         <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-search"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-envelope"></span></button>
                         <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-heart"></span></button>
                         <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-star"></span></button>
                         <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-star-empty"></span></button>
                         <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-user"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-film"></span></button>
                         <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-ok"></span></button>
                         <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-remove"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-signal"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-cog"></span></button>
+                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-zoom-in"></span></button>
+                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-off"></span></button>
                         <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-trash"></span></button>
                         <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-home"></span></button>
                         <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-file"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-time"></span></button>
+                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-paperclip"></span></button>
                         <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-road"></span></button>
+                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-download"></span></button>
+                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-upload"></span></button>
                         <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-repeat"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-lock"></span></button>
                         <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-flag"></span></button>
                         <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-tag"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-tags"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-book"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-bookmark"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-print"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-camera"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-picture"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-pencil"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-adjust"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-edit"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-share"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-check"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-backward"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-plus-sign"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-minus-sign"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-remove-sign"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-ok-sign"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-question-sign"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-info-sign"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-asterisk"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-exclamation-sign"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-gift"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-fire"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-eye-open"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-eye-close"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-warning-sign"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-plane"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-calendar"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-random"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-comment"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-shopping-cart"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-bullhorn"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-bell"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-filter"></span></button>
-                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-briefcase"></span></button>
+                        <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-play"></span></button>
                     </div>
 
-                    <div class="input-control text" data-role="input-control" >
-                        <h5>Text</h5>
-                        <textarea placeholder="Explain the task" type="text" cols="50" rows="5"></textarea>
-                    </div>
-
-
-                    <div style="margin-top: 80px"></div>
                     <button class="metro modal-btn-violet" data-wm-role="close">Submit</button>
                     <button class="metro modal-btn" data-wm-role="close">Close</button>
                     <div style="margin-top: 20px">
                     </div>
-
                 </fieldset>
             </form>
-
         </div>
     </div>
 </div>
+
+<div class="win8modal" id="addColumnModal" tabindex="-1" role="dialog">
+    <div class="metro">
+        <div style="background-color: #ffffff" class="container" align="center">
+            <form>
+                <fieldset>
+                    <legend style="background-color: #fa6800; color: #ffffff"><i class="glyphicon glyphicon-edit"></i> Add a new column</legend>
+
+                    <div class="input-control text" data-role="input-control">
+                        <h5>Name</h5>
+                        <input type="text" id="notResizable" placeholder="Name of column" />
+                    </div>
+
+                    <div style="margin-top: 25px"></div>
+
+                    <div class="input-control text" data-role="input-control">
+                        <h5>Capacity</h5>
+                        <input type="number" id="notResizable" placeholder="Capacity [Optional]" />
+                        <br />
+                        <i style="font-size: 0.7em">Default = 0</i>
+                    </div>
+
+                    <div style="margin-top: 40px"></div>
+
+                    <button class="metro modal-btn-violet" data-wm-role="close">Submit</button>
+                    <button class="metro modal-btn" data-wm-role="close">Close</button>
+                    <div style="margin-top: 20px">
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class='win8modal-cover'></div>
