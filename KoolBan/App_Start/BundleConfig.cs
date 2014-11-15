@@ -11,6 +11,7 @@ namespace KoolBan
                 "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
+                "~/Scripts/Win8Modal.js",
                 "~/Scripts/jquery-ui-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -37,10 +38,12 @@ namespace KoolBan
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                 "~/Scripts/bootstrap.js",
+                "~/Scripts/metro-ui/metro.min.js",
                 "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                  "~/Content/bootstrap.css",
+                 "~/Content/Win8Modal.min.css",
                  "~/Content/metro-ui/css/metro-bootstrap.css",
                  "~/Content/metro-ui/css/metro-bootstrap-responsive.css",
                  "~/Content/Site.css"));

@@ -1,5 +1,4 @@
 ﻿body {
-    padding-top: 50px;
     padding-bottom: 20px;
 }
 
@@ -49,6 +48,8 @@ textarea {
     font-size: 14px;
     -ms-word-wrap: break-word;
     word-wrap: break-word;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .metro .tile .logo {
@@ -138,15 +139,15 @@ textarea {
 .metro .tile .config {
     position: absolute;
     top: 0;
-    right: 0;
-    width: 22px;
-    height: 22px;
+    right: 10px;
+    width: 29px;
+    height: 29px;
     text-align: center;
     padding: 2px;
     margin: 0;
     vertical-align: middle !important;
     display: block;
-    font-size: 10pt;
+    font-size: 12pt;
     font-weight: 100;
     font-family: 'Glyphicons Halflings';
     background-color: transparent;
@@ -161,6 +162,10 @@ textarea {
     -ms-box-shadow: none;
     box-shadow: none
 }
+
+.metro .tile:hover .config {
+    visibility: visible !important; 
+} 
 
 .bg-darkGreen:hover {
     outline: 3px solid #60a917 !important;
@@ -200,4 +205,68 @@ textarea {
 }
 .bg-darkBrown:hover {
     outline: 3px solid #825a2c !important;
+}
+.metro .modal-btn {
+    float: right;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    white-space: nowrap;
+    padding: 2px 12px 3px;
+    font-size: 16px;
+    line-height: 1.5em;
+    -ms-border-radius: 0px;
+    border-radius: 0px;
+    font-weight: 700;
+    text-decoration: none;
+    -moz-user-select: none;
+    -webkit-transition: all 0.1s ease-in 0s;
+    -moz-transition: all 0.1s ease-in 0s;
+    -ms-transition: all 0.1s ease-in 0s;
+    -o-transition: all 0.1s ease-in 0s;
+    transition: all 0.1s ease-in 0s;
+    margin: 5px;
+    border: 3px solid #555;
+    color: #555;
+    background-color: #fff;
+}
+
+.metro .modal-btn:hover {
+    background-color: #555 !important;
+    color: #FFF !important;
+}
+
+
+.metro .modal-btn-violet {
+    float: right;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    white-space: nowrap;
+    padding: 2px 12px 3px;
+    font-size: 16px;
+    line-height: 1.5em;
+    margin: 5px;
+    -ms-border-radius: 0px;
+    border-radius: 0px;
+    font-weight: 700;
+    text-decoration: none;
+    -moz-user-select: none;
+    -webkit-transition: all 0.1s ease-in 0s;
+    -moz-transition: all 0.1s ease-in 0s;
+    -ms-transition: all 0.1s ease-in 0s;
+    -o-transition: all 0.1s ease-in 0s;
+    transition: all 0.1s ease-in 0s;
+    border: 3px solid #555;
+    color: #555;
+    background-color: #fff;
+    border: 3px solid #7C40A2;
+    color: #7C40A2;
+}
+
+.metro .modal-btn-violet:hover {
+    background-color: #7C40A2 !important;
+    color: #FFF !important;
 }

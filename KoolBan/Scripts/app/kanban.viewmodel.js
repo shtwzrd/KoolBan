@@ -58,85 +58,87 @@
         return false;
     }
 
-    self.updateViewModel = function(data) {
+    self.updateViewModel = function (data) {
         if (!self.lockUpdate) {
-            ko.viewmodel.updateFromModel(self.model, data);
-            self.refreshBoard();
+   //         ko.viewmodel.updateFromModel(self.model, data);
+   //         self.refreshBoard();
         }
     }
 
     self.refreshBoard = function () {
-            $('.tile.main').draggable({
-                revert: 'invalid',
-                stack: "div",
-                start: function (event, ui) { self.lockUpdate = true; },
-                stop: function (event, ui) { self.lockUpdate = false; },
-            });
+        $('.tile.main').draggable({
+            revert: 'invalid',
+            stack: "div",
+            start: function (event, ui) { self.lockUpdate = true; },
+            stop: function (event, ui) { self.lockUpdate = false; },
+        });
 
-            $('.kanban td').droppable({
-                accept: '.tile.main',
-                tolerance: 'pointer',
-                drop: function (event, ui) {
-                    if (!self.onDropNote(ui.draggable[0], event.target)) {
-                        ui.draggable.draggable('option', 'revert', true);
-                    }
-                },
-                over: function (event, ui) {
-                    $('#log').text('over');
-                },
-                out: function (event, ui) {
-                    $('#log').text('out');
+        $('.kanban td').droppable({
+            accept: '.tile.main',
+            tolerance: 'pointer',
+            drop: function (event, ui) {
+                if (!self.onDropNote(ui.draggable[0], event.target)) {
+                    ui.draggable.draggable('option', 'revert', true);
                 }
-            });
-        };
-
-        app.dataModel.startPolling(self.updateViewModel);
-
-        /*  Mapping the model to an observable */
-        var options = {
-            extend: {
-                "{root}": function (model) {
-                    model.ColumnsOrdered = ko.computed(function () {
-                        return model.Columns().sort(function (a, b) {
-                            return a.Priority() - b.Priority();
-                        });
-                    });
-                },
-                "{root}.Columns[i]": function (column) {
-                    column.AutoSortedNotes = ko.computed(function () {
-                        return column.Notes().sort(function (a, b) {
-                            return b.Description().length - a.Description().length;
-                        });
-                    });
-                },
-                "{root}.Columns[i].Notes[i]": function (note) {
-                    note.NoteClass = ko.computed(function () {
-                        var markup = "tile ";
-                        if (note.Description().length > 40) {
-                            markup += "double ";
-                        }
-                        if (note.Description().length > 106) {
-                            markup += "double-vertical ";
-                        }
-                        markup += "bg-dark" + note.Color();
-                        markup += " main";
-
-                        return markup;
-                    });
-                    note.NoteLogo = ko.computed(function () {
-                        var logo = "glyphicon glyphicon-";
-                        logo += note.Logo();
-                        return logo;
-                    });
-                    return note;
-                }
+            },
+            over: function (event, ui) {
+                $('#log').text('over');
+            },
+            out: function (event, ui) {
+                $('#log').text('out');
             }
-        };
+        });
 
-    }
+        Win8Modal.install();
+    };
 
-    app.addViewModel({
-        name: "Home",
-        bindingMemberName: "board",
-        factory: KanbanViewModel
-    });
+    app.dataModel.startPolling(self.updateViewModel);
+
+    /*  Mapping the model to an observable */
+    var options = {
+        extend: {
+            "{root}": function (model) {
+                model.ColumnsOrdered = ko.computed(function () {
+                    return model.Columns().sort(function (a, b) {
+                        return a.Priority() - b.Priority();
+                    });
+                });
+            },
+            "{root}.Columns[i]": function (column) {
+                column.AutoSortedNotes = ko.computed(function () {
+                    return column.Notes().sort(function (a, b) {
+                        return b.Description().length - a.Description().length;
+                    });
+                });
+            },
+            "{root}.Columns[i].Notes[i]": function (note) {
+                note.NoteClass = ko.computed(function () {
+                    var markup = "tile ";
+                    if (note.Description().length > 40) {
+                        markup += "double ";
+                    }
+                    if (note.Description().length > 106) {
+                        markup += "double-vertical ";
+                    }
+                    markup += "bg-dark" + note.Color();
+                    markup += " main";
+
+                    return markup;
+                });
+                note.NoteLogo = ko.computed(function () {
+                    var logo = "glyphicon glyphicon-";
+                    logo += note.Logo();
+                    return logo;
+                });
+                return note;
+            }
+        }
+    };
+
+}
+
+app.addViewModel({
+    name: "Home",
+    bindingMemberName: "board",
+    factory: KanbanViewModel
+});
