@@ -18,7 +18,6 @@
     self.onDropNote = function (note, column) {
         var noteId = note.id.slice(1);
         var columnId = column.id.slice(1);
-        alert(columnId);
         var formerColumnIndex = null;
         var newColumnIndex = null;
         var noteIndex = null;
@@ -31,9 +30,9 @@
                     formerColumnIndex = i;
                     noteIndex = j;
                 }
-                if (newModel.Columns[i].ColumnId == columnId) {
-                    newColumnIndex = i;
-                }
+            }
+            if (newModel.Columns[i].ColumnId == columnId) {
+                newColumnIndex = i;
             }
         }
 
