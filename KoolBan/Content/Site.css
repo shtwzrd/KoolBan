@@ -285,3 +285,24 @@ textarea {
 #notResizable {
     resize: none
 ;}
+
+.win8modal-hide {
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: auto;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 2;
+    background: #fff;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+}

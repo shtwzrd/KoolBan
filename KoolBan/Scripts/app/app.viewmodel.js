@@ -3,8 +3,8 @@
     var self = this;
     self.dataModel = dataModel;
 
-    // Private operations
-    function cleanUpLocation() {
+
+    self.cleanUpLocation = function() {
         window.location.hash = "";
 
         if (typeof (history.pushState) !== "undefined") {

@@ -5,12 +5,12 @@
         <div class="heading"><h1 data_bind="valueWithInit: 'projectId'">@Model.ProjectId</h1></div>
         <input id="projectId" value=@Model.ProjectId style="visibility: hidden"> <!--retrieved by the client-side viewmodel-->
         <div class="right">
-            <button type="button" style="width: 250px; margin-right: 25px; background-color: #60a917; color: #ffffff;" class="command-button" data-wm-role="open">
-                <i class="glyphicon glyphicon-pencil note"></i>
+            <button type="button" onclick="window.location.hash='#/AddNote'" style="width: 250px; margin-right: 25px; background-color: #60a917; color: #ffffff;" class="command-button" >
+                <i class="glyphicon glyphicon-pencil"></i>
                 Add a new note
                 <small></small>
             </button>
-            <button style="width: 250px; margin-right: 25px; background-color: #fa6800; color: #ffffff;" class="command-button" data-wm-role="open">
+            <button onclick="window.location.hash='#/AddColumn'" style="width: 250px; margin-right: 25px; background-color: #fa6800; color: #ffffff;" class="command-button">
                 <i class="glyphicon glyphicon-edit"></i>
                 Add a new column
                 <small></small>
@@ -69,8 +69,10 @@
     </table>
 </script>
 <!-- /ko -->
-<!-- Edite Note Modal -->
-<div class="win8modal" id="addNoteModal" tabindex="-1" role="dialog">
+
+<!-- Edit Note Modal -->
+<!-- ko with: note-->
+<div class="win8modal-hide" id="addNoteModal" tabindex="-1" role="dialog">
     <div class="metro">
         <div style="background-color: #ffffff" class="container" align="center">
             <form>
@@ -100,7 +102,7 @@
                         }
                     </div>
 
-                    <h5>Logo</h5>
+                    <h5>Icon</h5>
                     <div class="button-set" data-role="button-group" style="max-width: 300px;">
                         <button class="active" style="width:40px; height:26px"></button>
                         <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-cog"></span></button>
@@ -132,8 +134,8 @@
                         <button><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-play"></span></button>
                     </div>
 
-                    <button class="metro modal-btn-violet" data-wm-role="close">Submit</button>
-                    <button class="metro modal-btn" data-wm-role="close">Close</button>
+                    <button class="metro modal-btn-violet">Submit</button>
+                    <button class="metro modal-btn" onclick="app.Views.Modal.hide()">Close</button>
                     <div style="margin-top: 20px">
                     </div>
                 </fieldset>
@@ -141,8 +143,9 @@
         </div>
     </div>
 </div>
+<!-- /ko --> 
 
-<div class="win8modal" id="addColumnModal" tabindex="-1" role="dialog">
+<div class="win8modal-hide" id="addColumnModal" tabindex="-1" role="dialog">
     <div class="metro">
         <div style="background-color: #ffffff" class="container" align="center">
             <form>
@@ -165,8 +168,8 @@
 
                     <div style="margin-top: 40px"></div>
 
-                    <button class="metro modal-btn-violet" data-wm-role="close">Submit</button>
-                    <button class="metro modal-btn" data-wm-role="close">Close</button>
+                    <button class="metro modal-btn-violet">Submit</button>
+                    <button class="metro modal-btn" onclick="app.Views.Modal.hide()">Close</button>
                     <div style="margin-top: 20px">
                     </div>
                 </fieldset>
@@ -175,4 +178,4 @@
     </div>
 </div>
 
-<div class='win8modal-cover'></div>
+<div id="win8modal-cover" class='win8modal-cover'></div>

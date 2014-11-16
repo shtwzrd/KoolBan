@@ -82,7 +82,6 @@
         Win8Modal.install();
     };
 
-
 }
 
 app.addViewModel({

@@ -1,11 +1,12 @@
 ﻿
 //Setup routing
-Path.map("#/stuff").to(function() {
-    alert("poop");
-});
 
 Path.map("#/AddNote").to(function() {
+    app.Views.Note.addNewNote();
+});
 
+Path.map("#/AddColumn").to(function() {
+    app.Views.Column.addNewColumn();
 });
 
 //Entry point
