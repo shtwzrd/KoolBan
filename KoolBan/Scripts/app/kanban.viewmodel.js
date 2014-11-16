@@ -79,7 +79,6 @@
             }
         });
 
-        Win8Modal.install();
     };
 
 }
