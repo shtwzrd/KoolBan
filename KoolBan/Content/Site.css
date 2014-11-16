@@ -259,8 +259,6 @@ textarea {
     -ms-transition: all 0.1s ease-in 0s;
     -o-transition: all 0.1s ease-in 0s;
     transition: all 0.1s ease-in 0s;
-    border: 3px solid #555;
-    color: #555;
     background-color: #fff;
     border: 3px solid #7C40A2;
     color: #7C40A2;
@@ -268,6 +266,37 @@ textarea {
 
 .metro .modal-btn-violet:hover {
     background-color: #7C40A2 !important;
+    color: #FFF !important;
+}
+
+.metro .modal-btn-red {
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    white-space: nowrap;
+    padding: 2px 12px 3px;
+    font-size: 16px;
+    line-height: 1.5em;
+    margin: 5px;
+    -ms-border-radius: 0px;
+    border-radius: 0px;
+    font-weight: 700;
+    text-decoration: none;
+    -moz-user-select: none;
+    -webkit-transition: all 0.1s ease-in 0s;
+    -moz-transition: all 0.1s ease-in 0s;
+    -ms-transition: all 0.1s ease-in 0s;
+    -o-transition: all 0.1s ease-in 0s;
+    transition: all 0.1s ease-in 0s;
+    background-color: #fff;
+    border: 3px solid #E51400;
+    color: #E51400;
+}
+
+.metro .modal-btn-red:hover {
+    background-color: #E51400 !important;
     color: #FFF !important;
 }
 

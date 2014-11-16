@@ -5,13 +5,7 @@
 
     // Get the initial project Json from the server 
 
-    self.updateUI = function () {
-        if (!self.lockUpdate) {
-            self.refreshBoard();
-        }
-    }
 
-    app.dataModel.startPolling(self.updateUI);
 
     // Behavior
 
@@ -80,6 +74,14 @@
         });
 
     };
+
+    self.updateUI = function () {
+        if (!self.lockUpdate) {
+            self.refreshBoard();
+        }
+    }
+
+    app.dataModel.startPolling(self.updateUI);
 
 }
 

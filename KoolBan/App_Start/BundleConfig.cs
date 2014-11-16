@@ -25,11 +25,11 @@ namespace KoolBan
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/Scripts/path.js",
-                "~/Scripts/app/common.js",
                 "~/Scripts/app/app.datamodel.js",
                 "~/Scripts/app/app.viewmodel.js",
                 "~/Scripts/app/kanban.viewmodel.js",
                 "~/Scripts/app/note.viewmodel.js",
+                "~/Scripts/app/app.ko-bindings.js",
                 "~/Scripts/app/column.viewmodel.js",
                 "~/Scripts/app/modal.viewmodel.js",
                 "~/Scripts/app/_run.js"));

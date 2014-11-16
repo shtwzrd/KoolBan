@@ -9,6 +9,10 @@ Path.map("#/AddColumn").to(function() {
     app.Views.Column.addNewColumn();
 });
 
+Path.map("#/EditNote/:NoteId").to(function() {
+    app.Views.Note.editExistingNote(this.params["NoteId"]);
+});
+
 //Entry point
 (function ($) {
     app.initialize();

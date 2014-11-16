@@ -62,7 +62,7 @@ namespace KoolBan.Controllers
             _noteRepository.Delete(noteId);
             _noteRepository.Save();
 
-            return Json(new {result = "HttpPost Successful"});
+            return Json(new {result = "HttpPost Successful" });
         }
     }
 
