@@ -3,10 +3,6 @@
     var self = this;
     app.dataModel.projectId = $('#projectId')[0].value;
 
-    // Get the initial project Json from the server 
-
-
-
     // Behavior
 
     self.onDropNote = function (note, column) {
@@ -82,6 +78,7 @@
     }
 
     app.dataModel.startPolling(self.updateUI);
+    app.dataModel.subscribe(self.updateUI);
 
 }
 

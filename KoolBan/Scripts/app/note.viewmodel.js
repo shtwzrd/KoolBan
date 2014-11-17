@@ -7,22 +7,28 @@
     self.columnId = ko.observable();
     self.status = ko.observable('add');
 
-    self.addNewNote = function () {
-        self.status = ko.observable('add');
+    self.addNewNote = function() {
+        self.status('add');
         self.description('');
         self.logo('empty');
         self.color('Green');
         self.noteId(null);
         // New Notes should default to the first Column in the Project
-        self.columnId(app.dataModel.project.ColumnsOrdered()[0].ColumnId());
+        if (app.dataModel.project) { //Possible to get here before we load initial JSON
+            self.columnId(app.dataModel.project.ColumnsOrdered()[0].ColumnId());
+        } else { //If project is null, subscribe to dataModel and grab this data when it becomes available
+            app.dataModel.subscribe(function() {
+                self.columnId(app.dataModel.project.ColumnsOrdered()[0].ColumnId());
+            });
+        }
         app.Views.Modal.noteModal();
     }
 
-    self.editExistingNote = function (id) {
-        self.status = ko.observable('edit');
+    self.editExistingNote = function(id) {
+        self.status('edit');
         self.noteId(id);
 
-        app.dataModel.readNote(self.noteId(), function (data) {
+        app.dataModel.readNote(self.noteId(), function(data) {
             self.description(data.Description);
             self.logo(data.Logo);
             self.color(data.Color);
@@ -31,11 +37,11 @@
         });
     }
 
-    self.delete = function () {
-        app.dataModel.deleteNote(self.noteId(), close);
+    self.delete = function() {
+        app.dataModel.deleteNote(self.noteId(), self.close);
     }
 
-    self.submit = function () {
+    self.submit = function() {
         var newNoteModel = {
             Description: self.description(),
             Logo: self.logo(),
@@ -44,20 +50,18 @@
         }
         if (self.noteId() != null) {
             newNoteModel["NoteId"] = self.noteId();
-            app.dataModel.updateNote(newNoteModel, close);
+            app.dataModel.updateNote(newNoteModel, self.close);
         } else {
-            console.log(newNoteModel);
-            app.dataModel.createNote(newNoteModel, close);
+            app.dataModel.createNote(newNoteModel, self.close);
         }
 
     }
 
-    function close() {
-        setTimeout(
-            app.Views.Modal.hide(),
-            2000);
+    self.close = function() {
+        app.Views.Modal.hide();
     }
 }
+
 app.addViewModel({
     name: "Note",
     bindingMemberName: "note",

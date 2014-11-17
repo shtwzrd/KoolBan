@@ -8,7 +8,7 @@
         window.location.hash = "";
 
         if (typeof (history.pushState) !== "undefined") {
-            history.pushState("", document.title, location.pathname);
+   //         history.pushState("", document.title, location.pathname);
         }
     }
     // Data
@@ -54,7 +54,6 @@
     };
 
     self.initialize = function () {
-
         Path.listen();
     }
 }

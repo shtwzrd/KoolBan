@@ -4,6 +4,11 @@
     self.project = null;
     self.Loading = ko.observable(true);
     self.lockUpdate = false;
+    self.subscribers = [];
+
+    self.subscribe = function (callback) {
+        self.subscribers.push(callback);
+    }
 
     // Operations
     self.startPolling = function (callback) {
@@ -17,8 +22,8 @@
                     self.Loading(false);
                 }
             });
-            callback();
         }
+        callback();
 
         function poll() {
             setTimeout(function () {
@@ -28,7 +33,9 @@
                     dataType: "json",
                     success: function (data) {
                         self.updateMe(data);
-                        callback();
+                        self.subscribers.forEach(function(notify) {
+                            notify();
+                        });
                         //Setup the next poll recursively
                         poll();
                     }

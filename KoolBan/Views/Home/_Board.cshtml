@@ -132,10 +132,12 @@
                         <button data-value='tag'><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-tag"></span></button>
                         <button data-value='play'><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-play"></span></button>
                     </div>
-
-                    <button class="metro modal-btn-red" onclick="app.Views.Note.delete()">Delete</button>
+                    
+                    <!-- ko if: status() == 'edit' -->
+                        <button class="metro modal-btn-red" onclick="app.Views.Note.delete()">Delete</button>
+                    <!-- /ko -->
                     <button class="metro modal-btn-violet" onclick="app.Views.Note.submit()">Submit</button>
-                    <button class="metro modal-btn" onclick="app.Views.Modal.hide()">Close</button>
+                    <button class="metro modal-btn" onclick="app.Views.Note.close()">Close</button>
                     <div style="margin-top: 20px">
                     </div>
                 </fieldset>
