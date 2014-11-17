@@ -80,27 +80,27 @@ textarea {
     background-color: #00529b;
 }
 
-.kanban-table{
+.kanban-table {
     width: auto;
     margin-left: auto;
     margin-right: auto;
     padding: 5px 5px 5px 5px;
 }
 
-.kanban-table td {
-    vertical-align: top;
-    width: 280px;
-    max-width: 280px;
-    -moz-min-width: 280px;
-    -ms-min-width: 280px;
-    -o-min-width: 280px;
-    -webkit-min-width: 280px;
-    min-width: 280px;
-    margin: 20px;
-    padding: 5px 5px 5px 5px;
-    display: table-cell;
-    z-index: -1;
-}
+    .kanban-table td {
+        vertical-align: top;
+        width: 280px;
+        max-width: 280px;
+        -moz-min-width: 280px;
+        -ms-min-width: 280px;
+        -o-min-width: 280px;
+        -webkit-min-width: 280px;
+        min-width: 280px;
+        margin: 20px;
+        padding: 5px 5px 5px 5px;
+        display: table-cell;
+        z-index: -1;
+    }
 
 .kanban .h3 {
     color: #fff;
@@ -122,9 +122,19 @@ textarea {
     padding-left: 5px;
 }
 
-.kanban .columnhead:hover .column-config {
-    visibility: visible !important; 
-} 
+    .kanban .columnhead:hover .column-config {
+        visibility: visible !important;
+    }
+
+.kanban .headanchor {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    cursor: move;
+}
 
 .kanban .column-config {
     position: absolute;
@@ -144,7 +154,7 @@ textarea {
     -webkit-box-shadow: none;
     -ms-box-shadow: none;
     box-shadow: none;
-    visibility: hidden;   
+    visibility: hidden;
 }
 
 
@@ -186,52 +196,65 @@ textarea {
 .metro .tile {
     -webkit-box-shadow: none;
     -ms-box-shadow: none;
-    box-shadow: none
+    box-shadow: none;
 }
 
-.metro .tile:hover .config {
-    visibility: visible !important; 
-} 
+    .metro .tile:hover .config {
+        visibility: visible !important;
+    }
 
 .bg-darkGreen:hover {
     outline: 3px solid #60a917 !important;
 }
+
 .bg-darkEmerald:hover {
     outline: 3px solid #008a00 !important;
 }
+
 .bg-darkTeal:hover {
     outline: 3px solid #00aba9 !important;
 }
+
 .bg-darkCyan:hover {
     outline: 3px solid #1ba1e2 !important;
 }
+
 .bg-darkCobalt:hover {
     outline: 3px solid #0050ef !important;
 }
+
 .bg-darkIndigo:hover {
     outline: 3px solid #6a00ff !important;
 }
+
 .bg-darkViolet:hover {
     outline: 3px solid #aa00ff !important;
 }
+
 .bg-darkPink:hover {
     outline: 3px solid #dc4fad !important;
 }
+
 .bg-darkMagenta:hover {
     outline: 3px solid #d80073 !important;
 }
- .bg-darkCrimson:hover {
+
+.bg-darkCrimson:hover {
     outline: 3px solid #a20025 !important;
 }
+
 .bg-darkRed:hover {
     outline: 3px solid #e51400 !important;
 }
+
 .bg-darkOrange:hover {
     outline: 3px solid #fa6800 !important;
 }
+
 .bg-darkBrown:hover {
     outline: 3px solid #825a2c !important;
 }
+
 .metro .modal-btn {
     float: right;
     text-align: center;
@@ -258,10 +281,10 @@ textarea {
     background-color: #fff;
 }
 
-.metro .modal-btn:hover {
-    background-color: #555 !important;
-    color: #FFF !important;
-}
+    .metro .modal-btn:hover {
+        background-color: #555 !important;
+        color: #FFF !important;
+    }
 
 
 .metro .modal-btn-violet {
@@ -290,10 +313,10 @@ textarea {
     color: #7C40A2;
 }
 
-.metro .modal-btn-violet:hover {
-    background-color: #7C40A2 !important;
-    color: #FFF !important;
-}
+    .metro .modal-btn-violet:hover {
+        background-color: #7C40A2 !important;
+        color: #FFF !important;
+    }
 
 .metro .modal-btn-red {
     float: left;
@@ -321,25 +344,25 @@ textarea {
     color: #E51400;
 }
 
-.metro .modal-btn-red:hover {
-    background-color: #E51400 !important;
-    color: #FFF !important;
-}
+    .metro .modal-btn-red:hover {
+        background-color: #E51400 !important;
+        color: #FFF !important;
+    }
 
 .metro .button-set button {
-  display: block;
-  float: left;
-  margin: 1px;
-  margin-right: 1px;
+    display: block;
+    float: left;
+    margin: 1px;
+    margin-right: 1px;
 }
 
-.metro .button-set button.active {
-    outline: 2px solid #000000
-}
+    .metro .button-set button.active {
+        outline: 2px solid #000000;
+    }
 
 #notResizable {
-    resize: none
-;}
+    resize: none;
+}
 
 .win8modal-hide {
     display: block;

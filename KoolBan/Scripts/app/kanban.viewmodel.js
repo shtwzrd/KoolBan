@@ -5,6 +5,35 @@
 
     // Behavior
 
+    self.onDropColumn = function (source, target) {
+        var sourceId = source.id.slice(1);
+        var targetId = target.id.slice(1);
+        var sourceIndex = null;
+        var targetIndex = null;
+
+        var newModel = ko.viewmodel.toModel(app.dataModel.project);
+
+        for (var i = 0; i < newModel.Columns.length; i++) {
+            if (newModel.Columns[i].ColumnId == sourceId) {
+                sourceIndex = i;
+            }
+            if (newModel.Columns[i].ColumnId == targetId) {
+                targetIndex = i;
+            }
+        }
+
+        var swp = newModel.Columns[sourceIndex].Priority;
+        newModel.Columns[sourceIndex].Priority = newModel.Columns[targetIndex].Priority;
+        newModel.Columns[targetIndex].Priority = swp;
+
+        app.dataModel.updateMe(newModel);
+
+        self.refreshBoard();
+
+        app.dataModel.updateColumn(newModel.Columns[sourceIndex]);
+        app.dataModel.updateColumn(newModel.Columns[targetIndex]);
+    }
+
     self.onDropNote = function (note, column) {
         var noteId = note.id.slice(1);
         var columnId = column.id.slice(1);
@@ -60,13 +89,23 @@
                 if (!self.onDropNote(ui.draggable[0], event.target)) {
                     ui.draggable.draggable('option', 'revert', true);
                 }
-            },
-            over: function (event, ui) {
-                $('#log').text('over');
-            },
-            out: function (event, ui) {
-                $('#log').text('out');
             }
+        });
+
+        $('.kanban .headanchor').draggable({
+            revert: 'invalid',
+            stack: "div",
+            start: function (event, ui) { app.dataModel.lockUpdate = true; },
+            stop: function (event, ui) { app.dataModel.lockUpdate = false; },
+        });
+
+        $('.kanban th').droppable({
+            accept: '.kanban .headanchor',
+            tolerance: 'pointer',
+            drop: function (event, ui) {
+                app.dataModel.lockUpdate = false;
+                self.onDropColumn(ui.draggable[0], event.target); 
+            },
         });
 
     };

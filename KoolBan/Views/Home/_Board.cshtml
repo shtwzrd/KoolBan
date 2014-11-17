@@ -33,9 +33,9 @@
         <thead>
             <tr>
                 <!-- ko foreach: ColumnsOrdered() -->
-                <th class="kanban columnhead">
+                <th class="kanban columnhead" data-bind="attr: {'id' : 'c' + ColumnId() }">
                         <h3 class="kanban h3">
-                            <span data-bind="text: ColumnName"></span>
+                            <span class="kanban headanchor" data-bind="text: ColumnName, attr: {'id' : 'h' + ColumnId() }"></span>
                             <span data-bind="if: Capacity() > 0">
                                 <small class="restriction">
                                     [<!-- ko text: Notes().length --><!-- /ko -->/<span class="limit"><!-- ko text: Capacity() --><!-- /ko --></span>]
