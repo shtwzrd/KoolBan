@@ -1,7 +1,6 @@
 ﻿ko.bindingHandlers.buttonSet = {
     init: function (element, valueAccessor, allBindingsAccessor) {
         var value = valueAccessor();
-        console.log(valueAccessor());
         value($(element).find('button.active').data('value'));
         $(element).find('button').on('click', function () {
             $(element).find('button.active').removeClass('active');

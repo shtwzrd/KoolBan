@@ -124,7 +124,6 @@
 
     // Data access operations --> Notes
     self.createNote = function (message, callback) {
-        alert(JSON.stringify(message));
         function sendData() {
             return $.ajax({
                 method: 'post',

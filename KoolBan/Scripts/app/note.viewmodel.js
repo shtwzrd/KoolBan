@@ -12,10 +12,10 @@
         self.description('');
         self.logo('empty');
         self.color('Green');
-        app.Views.Modal.noteModal();
         self.noteId(null);
         // New Notes should default to the first Column in the Project
         self.columnId(app.dataModel.project.ColumnsOrdered()[0].ColumnId());
+        app.Views.Modal.noteModal();
     }
 
     self.editExistingNote = function (id) {
@@ -32,7 +32,6 @@
     }
 
     self.delete = function () {
-        console.log(self.noteId());
         app.dataModel.deleteNote(self.noteId(), close);
     }
 
@@ -47,6 +46,7 @@
             newNoteModel["NoteId"] = self.noteId();
             app.dataModel.updateNote(newNoteModel, close);
         } else {
+            console.log(newNoteModel);
             app.dataModel.createNote(newNoteModel, close);
         }
 

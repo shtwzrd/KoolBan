@@ -168,7 +168,6 @@
     <Content Include="Scripts\app\app.ko-bindings.js" />
     <Content Include="Scripts\app\app.viewmodel.js" />
     <Content Include="Scripts\app\column.viewmodel.js" />
-    <Content Include="Scripts\app\common.js" />
     <Content Include="Scripts\app\kanban.viewmodel.js" />
     <Content Include="Scripts\app\modal.viewmodel.js" />
     <Content Include="Scripts\app\note.viewmodel.js" />
