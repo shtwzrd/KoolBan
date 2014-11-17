@@ -22,14 +22,14 @@
         app.Views.Modal.columnModal();
     }
 
-    self.editExistingNote = function (id) {
+    self.editExistingColumn = function (id) {
         self.status('edit');
         self.columnId(id);
 
         app.dataModel.readColumn(self.columnId(), function (data) {
-            self.title(data.Description);
-            self.capacity(data.Logo);
-            self.priority(data.Color);
+            self.title(data.ColumnName);
+            self.capacity(data.Capacity);
+            self.priority(data.Priority);
             app.Views.Modal.columnModal();
         });
     }

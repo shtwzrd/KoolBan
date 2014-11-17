@@ -13,6 +13,10 @@ Path.map("#/EditNote/:NoteId").to(function() {
     app.Views.Note.editExistingNote(this.params["NoteId"]);
 });
 
+Path.map("#/EditColumn/:ColumnId").to(function() {
+    app.Views.Column.editExistingColumn(this.params["ColumnId"]);
+});
+
 //Entry point
 (function ($) {
     app.initialize();

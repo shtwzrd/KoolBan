@@ -122,6 +122,32 @@ textarea {
     padding-left: 5px;
 }
 
+.kanban .columnhead:hover .column-config {
+    visibility: visible !important; 
+} 
+
+.kanban .column-config {
+    position: absolute;
+    top: 0;
+    right: 22px;
+    max-width: 29px !important;
+    max-height: 29px !important;
+    text-align: center;
+    padding: 2px;
+    margin: 0;
+    vertical-align: middle !important;
+    display: block;
+    font-size: 12pt;
+    font-weight: 100;
+    font-family: 'Glyphicons Halflings';
+    background-color: transparent;
+    -webkit-box-shadow: none;
+    -ms-box-shadow: none;
+    box-shadow: none;
+    visibility: hidden;   
+}
+
+
 .kanban .columnhead .restriction {
     display: block;
     color: #fff;

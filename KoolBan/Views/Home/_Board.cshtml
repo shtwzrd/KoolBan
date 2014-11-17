@@ -34,14 +34,17 @@
             <tr>
                 <!-- ko foreach: ColumnsOrdered() -->
                 <th class="kanban columnhead">
-                    <h3 class="kanban h3">
-                        <span data-bind="text: ColumnName"></span>
-                        <span data-bind="if: Capacity() > 0">
-                            <small class="restriction">
-                                [<!-- ko text: Notes().length --><!-- /ko -->/<span class="limit"><!-- ko text: Capacity() --><!-- /ko --></span>]
-                            </small>
-                        </span>
-                    </h3>
+                        <h3 class="kanban h3">
+                            <span data-bind="text: ColumnName"></span>
+                            <span data-bind="if: Capacity() > 0">
+                                <small class="restriction">
+                                    [<!-- ko text: Notes().length --><!-- /ko -->/<span class="limit"><!-- ko text: Capacity() --><!-- /ko --></span>]
+                                </small>
+                            </span>
+                        </h3>
+                        <div class="kanban column-config">
+                            <a data-bind="attr: { 'href' : EditLink() }" class="glyphicon glyphicon-edit" style="font-family: 'Glyphicons Halflings'; color: #fff "></a>
+                        </div>
                 </th>
                 <!-- /ko -->
             </tr>
@@ -76,7 +79,7 @@
         <div style="background-color: #ffffff" class="container" align="center">
             <form>
                 <fieldset>
-                    <legend style="background-color: #60a917; color: #ffffff"><i class="glyphicon glyphicon-pencil"></i> Add a new note</legend>
+                    <legend style="background-color: #60a917; color: #ffffff"><i class="glyphicon glyphicon-pencil"></i> <span data-bind="text: status"></span> a note</legend>
 
                     <div class="input-control text" data-role="input-control">
                         <h5>Description</h5>
@@ -132,9 +135,9 @@
                         <button data-value='tag'><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-tag"></span></button>
                         <button data-value='play'><span style="font-family:Glyphicons Halflings;" class="glyphicon glyphicon-play"></span></button>
                     </div>
-                    
+
                     <!-- ko if: status() == 'edit' -->
-                        <button class="metro modal-btn-red" onclick="app.Views.Note.delete()">Delete</button>
+                    <button class="metro modal-btn-red" onclick="app.Views.Note.delete()">Delete</button>
                     <!-- /ko -->
                     <button class="metro modal-btn-violet" onclick="app.Views.Note.submit()">Submit</button>
                     <button class="metro modal-btn" onclick="app.Views.Note.close()">Close</button>
@@ -146,14 +149,13 @@
     </div>
 </div>
 <!-- /ko -->
-
 <!-- ko with: column -->
 <div class="win8modal-hide" id="addColumnModal" tabindex="-1" role="dialog">
     <div class="metro">
         <div style="background-color: #ffffff" class="container" align="center">
             <form>
                 <fieldset>
-                    <legend style="background-color: #fa6800; color: #ffffff"><i class="glyphicon glyphicon-edit"></i> Add a new column</legend>
+                    <legend style="background-color: #fa6800; color: #ffffff"><i class="glyphicon glyphicon-edit"></i> <span data-bind="text: status"></span> a column</legend>
 
                     <div class="input-control text" data-role="input-control">
                         <h5>Name</h5>
@@ -162,18 +164,17 @@
 
                     <div style="margin-top: 25px"></div>
 
-                    <div class="input-control text" data-role="input-control" >
+                    <div class="input-control text" data-role="input-control">
                         <h5>Capacity</h5>
                         <input type="number" id="notResizable" min="0" value="0" data-bind="value: capacity" />
                         <br />
                         <i style="font-size: 0.7em">0 = Uncapped</i>
                     </div>
 
-                    <span data-bind="text: capacity"></span>
                     <div style="margin-top: 40px"></div>
 
                     <!-- ko if: status() == 'edit' -->
-                        <button class="metro modal-btn-red" onclick="app.Views.Column.delete()">Delete</button>
+                    <button class="metro modal-btn-red" onclick="app.Views.Column.delete()">Delete</button>
                     <!-- /ko -->
                     <button class="metro modal-btn-violet" onclick="app.Views.Column.submit()">Submit</button>
                     <button class="metro modal-btn" onclick="app.Views.Column.close()">Close</button>

@@ -105,6 +105,7 @@
     }
 
     self.updateColumn = function (message, callback) {
+        message["ProjectId"] = self.projectId;
         function sendData() {
             return $.ajax({
                 method: 'post',
@@ -206,6 +207,10 @@
                         return b.Description().length - a.Description().length;
                     });
                 });
+                column.EditLink = ko.computed(function () {
+                    return "#/EditColumn/" + column.ColumnId();
+                });
+                return column;
             },
             "{root}.Columns[i].Notes[i]": function (note) {
                 note.NoteClass = ko.computed(function () {

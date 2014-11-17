@@ -25,10 +25,6 @@ namespace KoolBan.Models.Repositories
         public void Edit(Column column)
         {
             _dbContext.Entry(column).State = EntityState.Modified;
-            foreach (Note n in column.Notes)
-            {
-                _dbContext.Entry(n).State = EntityState.Modified;
-            }
         }
 
         public void Save()
