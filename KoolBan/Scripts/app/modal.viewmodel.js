@@ -19,6 +19,14 @@
         }
     };
 
+    _self.projectModal = function () {
+        if (_self.mode() != "project") {
+            _self.mode("project");
+            $('#projectModal').attr('class', 'win8modal');
+            _self.show();
+        }
+    };
+
     _self.show = function () {
         setTimeout(function () {
             _self.container.addClass('win8modal-active');

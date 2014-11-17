@@ -1,6 +1,10 @@
 ﻿
 //Setup routing
 
+Path.map("#/CreateProject").to(function() {
+    app.Views.Project.addNewProject();
+});
+
 Path.map("#/AddNote").to(function() {
     app.Views.Note.addNewNote();
 });

@@ -171,6 +171,7 @@
     <Content Include="Scripts\app\kanban.viewmodel.js" />
     <Content Include="Scripts\app\modal.viewmodel.js" />
     <Content Include="Scripts\app\note.viewmodel.js" />
+    <Content Include="Scripts\app\project.viewmodel.js" />
     <Content Include="Scripts\app\_run.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

@@ -31,6 +31,7 @@ namespace KoolBan
                 "~/Scripts/app/note.viewmodel.js",
                 "~/Scripts/app/app.ko-bindings.js",
                 "~/Scripts/app/column.viewmodel.js",
+                "~/Scripts/app/project.viewmodel.js",
                 "~/Scripts/app/modal.viewmodel.js",
                 "~/Scripts/app/_run.js"));
 

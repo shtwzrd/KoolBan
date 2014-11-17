@@ -8,17 +8,20 @@
             <button type="button" onclick="window.location.hash='#/AddNote'" style="width: 250px; margin-right: 25px; background-color: #60a917; color: #ffffff;" class="command-button">
                 <i class="glyphicon glyphicon-pencil"></i>
                 Add a new note
-                <small></small>
             </button>
             <button onclick="window.location.hash='#/AddColumn'" style="width: 250px; margin-right: 25px; background-color: #fa6800; color: #ffffff;" class="command-button">
                 <i class="glyphicon glyphicon-edit"></i>
                 Add a new column
-                <small></small>
             </button>
+            <!-- 
             <button style="width: 250px; margin-right: 25px; background-color: #a20025; color: #ffffff;" class="command-button">
                 <i class="glyphicon glyphicon-cog"></i>
                 Edit project
-                <small></small>
+            </button>
+            -->
+            <button onclick="window.location.hash='#/CreateProject'" style="width: 250px; margin-right: 25px; background-color: #6a00f0; color: #ffffff;" class="command-button">
+                <i class="glyphicon glyphicon-folder-open"> </i>
+               Create a new project 
             </button>
         </div>
     </div>
@@ -186,5 +189,33 @@
     </div>
 </div>
 <!-- /ko -->
+
+<!-- ko with: project -->
+<div class="win8modal-hide" id="projectModal" tabindex="-1" role="dialog">
+    <div class="metro">
+        <div style="background-color: #ffffff" class="container" align="center">
+            <form>
+                <fieldset>
+                    <legend style="background-color: #6a00f0; color: #ffffff"><i class="glyphicon glyphicon-folder-open"></i> Create a project</legend>
+
+                    <div class="input-control text" data-role="input-control">
+                        <h5>Project Name</h5>
+                        <input type="text" id="notResizable" data-bind="value: name" placeholder="Project name" />
+                    </div>
+
+                    <div style="margin-top: 25px"></div>
+
+                    <button class="metro modal-btn-violet" onclick="app.Views.Project.submit()">Submit</button>
+                    <button class="metro modal-btn" onclick="app.Views.Project.close()">Close</button>
+                    <div style="margin-top: 20px">
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /ko -->
+
+
 
 <div id="win8modal-cover" class='win8modal-cover'></div>
