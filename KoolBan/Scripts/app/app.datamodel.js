@@ -77,6 +77,7 @@
 
     // Data access operations --> Columns
     self.createColumn = function (message, callback) {
+        message["ProjectId"] = self.projectId;
         function sendData() {
             return $.ajax({
                 method: 'post',

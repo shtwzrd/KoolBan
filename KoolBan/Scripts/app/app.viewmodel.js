@@ -1,27 +1,18 @@
 ﻿function AppViewModel(dataModel) {
-    // Private state
     var self = this;
     self.dataModel = dataModel;
 
 
     self.cleanUpLocation = function() {
         window.location.hash = "";
-
-        if (typeof (history.pushState) !== "undefined") {
-   //         history.pushState("", document.title, location.pathname);
-        }
     }
+
     // Data
     self.Views = {
         Loading: {} // Other views are added dynamically by app.addViewModel(...).
     };
 
-    // UI state
-
-    // UI operations
-
     // Other navigateToX functions are added dynamically by app.addViewModel(...).
-    // Other operations
     self.addViewModel = function (options) {
         var viewItem = new options.factory(self, dataModel),
             navigator;

@@ -147,6 +147,7 @@
 </div>
 <!-- /ko -->
 
+<!-- ko with: column -->
 <div class="win8modal-hide" id="addColumnModal" tabindex="-1" role="dialog">
     <div class="metro">
         <div style="background-color: #ffffff" class="container" align="center">
@@ -156,22 +157,26 @@
 
                     <div class="input-control text" data-role="input-control">
                         <h5>Name</h5>
-                        <input type="text" id="notResizable" placeholder="Name of column" />
+                        <input type="text" id="notResizable" data-bind="value: title" placeholder="Name of column" />
                     </div>
 
                     <div style="margin-top: 25px"></div>
 
-                    <div class="input-control text" data-role="input-control">
+                    <div class="input-control text" data-role="input-control" >
                         <h5>Capacity</h5>
-                        <input type="number" id="notResizable" placeholder="Capacity [Optional]" />
+                        <input type="number" id="notResizable" min="0" value="0" data-bind="value: capacity" />
                         <br />
-                        <i style="font-size: 0.7em">Default = 0</i>
+                        <i style="font-size: 0.7em">0 = Uncapped</i>
                     </div>
 
+                    <span data-bind="text: capacity"></span>
                     <div style="margin-top: 40px"></div>
 
-                    <button class="metro modal-btn-violet">Submit</button>
-                    <button class="metro modal-btn" onclick="app.Views.Modal.hide()">Close</button>
+                    <!-- ko if: status() == 'edit' -->
+                        <button class="metro modal-btn-red" onclick="app.Views.Column.delete()">Delete</button>
+                    <!-- /ko -->
+                    <button class="metro modal-btn-violet" onclick="app.Views.Column.submit()">Submit</button>
+                    <button class="metro modal-btn" onclick="app.Views.Column.close()">Close</button>
                     <div style="margin-top: 20px">
                     </div>
                 </fieldset>
@@ -179,5 +184,6 @@
         </div>
     </div>
 </div>
+<!-- /ko -->
 
 <div id="win8modal-cover" class='win8modal-cover'></div>
