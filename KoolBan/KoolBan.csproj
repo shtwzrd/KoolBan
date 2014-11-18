@@ -189,6 +189,7 @@
     <Content Include="Content\metro-ui\fonts\iconFont.eot" />
     <Content Include="Content\metro-ui\fonts\iconFont.dev.svg" />
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\KoolBan.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

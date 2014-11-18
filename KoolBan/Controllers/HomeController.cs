@@ -1,6 +1,7 @@
 using System.Web.Mvc;
 using KoolBan.Models;
 using KoolBan.Models.Abstract;
+using KoolBan.Models.Repositories;
 using KoolBan.Models.Security;
 
 namespace KoolBan.Controllers
@@ -30,6 +31,16 @@ namespace KoolBan.Controllers
                 // If passwords match, clear the user's password and move to project
                 Session["project-Authentication"] = "";
                 return View(project);
+            } 
+
+            if (id == "Demo")
+            {
+                Project demoProject = new Project();
+                demoProject.ProjectId = "Demo";
+                demoProject.IsPrivate = false;
+                IProjectRepository projectRepository = new ProjectDbRepository();
+                projectRepository.Create(demoProject);
+                projectRepository.Save();
             }
             // Default project
             return RedirectToRoute("Demo");
