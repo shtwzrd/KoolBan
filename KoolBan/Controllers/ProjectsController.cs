@@ -17,6 +17,7 @@ namespace KoolBan.Controllers
 
         [HttpPost]
         public JsonResult CreateProject(Project project)
+//        public ActionResult CreateProject(Project project)
         {
             if (ModelState.IsValid)
             {
@@ -24,9 +25,11 @@ namespace KoolBan.Controllers
                 _projectRepository.Save();
 
                 return Json(new { result = "HttpPost Successful" });
+//                return RedirectToAction("Index", "Home", new {id = project.ProjectId});
             }
 
             return Json(new { result = "HttpPost Failed" });
+//            return RedirectToRoute("Demo");
         }
 
         [HttpGet]
