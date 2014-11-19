@@ -118,6 +118,25 @@
         return sendData().done(callback);
     }
 
+    self.updateColumns = function(message, callback) {
+        var columns = [];
+        message.forEach(function(entry) {
+            entry["ProjectId"] = self.projectId;
+            columns.push(entry);
+        });
+
+        function sendData() {
+            return $.ajax({
+                method: 'post',
+                data: JSON.stringify(columns),
+                url: '/Columns/UpdateColumns',
+                contentType: "application/json; charset=utf-8",
+            });
+        }
+
+        return sendData().done(callback);
+    }
+
     self.deleteColumn = function (message, callback) {
         function sendData() {
             return $.ajax({

@@ -8,6 +8,12 @@
     self.onDropColumn = function (source, target) {
         var sourceId = source.id.slice(1);
         var targetId = target.id.slice(1);
+
+        if (sourceId == targetId) {
+            //user dropped column into the same spot -- cancel
+            return;
+        }
+
         var sourceIndex = null;
         var targetIndex = null;
 
@@ -30,8 +36,7 @@
 
         self.refreshBoard();
 
-        app.dataModel.updateColumn(newModel.Columns[sourceIndex]);
-        app.dataModel.updateColumn(newModel.Columns[targetIndex]);
+        app.dataModel.updateColumns([newModel.Columns[sourceIndex], newModel.Columns[targetIndex]])
     }
 
     self.onDropNote = function (note, column) {

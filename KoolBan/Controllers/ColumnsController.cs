@@ -1,4 +1,4 @@
-﻿
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using KoolBan.Models;
 using KoolBan.Models.Abstract;
@@ -51,6 +51,31 @@ namespace KoolBan.Controllers
                 _columnRepository.Edit(column);
                 _columnRepository.Save();
 
+                return Json(new { result = "HttpPost Successful" });
+            }
+
+            return Json(new { result = "HttpPost Failed" });
+        }
+
+        [HttpPost]
+        public JsonResult UpdateColumns(IEnumerable<Column> columns)
+        {
+            var valid = true;
+            foreach (var c in columns)
+            {
+                if (!ModelState.IsValid)
+                {
+                    valid = false;
+                }
+            }
+            if (valid)
+            {
+                foreach (var c in columns)
+                {
+                    _columnRepository.Edit(c);
+                }
+
+                _columnRepository.Save();
                 return Json(new { result = "HttpPost Successful" });
             }
 

@@ -11,12 +11,12 @@
         self.title('');
         self.capacity(0);
         self.columnId(null);
-        // New Columns should default to the middle of the Project
+        // New Columns should default to the end of the Project
         if (app.dataModel.project) { //Possible to get here before we load initial JSON
-            self.priority(Math.floor(app.dataModel.project.ColumnsOrdered().length / 2));
+            self.priority(app.dataModel.project.ColumnsOrdered().length);
         } else { //If project is null, subscribe to dataModel and grab this data when it becomes available
             app.dataModel.subscribe(function () {
-                self.priority(Math.floor(app.dataModel.project.ColumnsOrdered().length / 2));
+                self.priority(app.dataModel.project.ColumnsOrdered().length);
             });
         }
         app.Views.Modal.columnModal();
