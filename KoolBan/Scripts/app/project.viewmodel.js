@@ -23,10 +23,21 @@
     }
 
     self.close = function () {
-        app.Views.Modal.hide();
         if (self.status() == "created") {
-            window.location.href = self.name();
+            pollTilCreated(function() {
+                app.Views.Modal.hide();
+                window.location.href = self.name();
+            });
         }
+    }
+
+    function pollTilCreated(alertme) {
+        app.dataModel.readProject(self.name(), function(data) {
+            if (data == null) {
+                pollTilCreated(alertme);
+            }    
+        });
+        alertme();
     }
 }
 app.addViewModel({

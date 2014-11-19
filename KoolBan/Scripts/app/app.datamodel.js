@@ -49,6 +49,18 @@
     // Data
 
     // Data access operations --> Projects
+    self.readProject = function(message, callback) {
+        function sendData() {
+            return $.ajax({
+                url: "/Projects/ReadProject",
+                data: { projectId: message },
+                dataType: "json",
+            });
+        }
+
+        return sendData().done(callback);
+    }
+
     self.createProject = function (message, callback) {
         function sendData() {
             return $.ajax({
