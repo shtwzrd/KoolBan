@@ -20,12 +20,21 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("KoolBan", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("KoolBan", "Index", "Home", new { id = "Demo" }, new { @class = "navbar-brand" })
             </div>
             <nav class="collapse navbar-collapse" role="navigation">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Board", "Index", "Home", new { id = "Demo" }, null)</li>
+                    <li>@Html.ActionLink("Demo", "Index", "Home", new { id = "Demo" }, null)</li>
                     <li>@Html.ActionLink("About", "About", "Home", new { }, null)</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @using (Html.BeginForm("Index", "Home"))
+                    {
+                        <li>
+                            <text style ="color: #777; ">Go to project &nbsp;&nbsp;</text>
+                            @Html.TextBox("id", "id", new { @placeholder = "Project name", @style = "margin-bottom: 15px; margin-top: 15px;" })
+                        </li>
+                    }
                 </ul>
             </nav>
         </div>
@@ -35,7 +44,7 @@
     @RenderSection("SPAViews", required: false)
     <hr />
     <footer>
-        <p align="center"><small>Check us out on <a href="http://github.com/warreq/koolban">Github</a></small></p>
+        <p align="center"><small>Check us out on <a href="http://github.com/warreq/koolban">GitHub</a></small></p>
         <p align="center"><small>Code licensed under the GPLv3</small></p>
     </footer>
     <!--</div>-->

@@ -1,13 +1,17 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Login";
 }
-
-<h2>Login</h2>
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken() // Generates a hidden form field (anti-forgery token) that is validated when the form is submitted.
-    <input type="password" name="pwd" id="pwd" />
-    <input type="submit" value="Sign in" />
-}
+<div class="metro" style="margin: 0;">
+    <div class="container">
+        <div class="heading">
+            <h1>Login</h1>
+        </div>
+        <br/>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken() // Generates a hidden form field (anti-forgery token) that is validated when the form is submitted.
+            <input type="password" name="pwd" id="pwd" placeholder="Type in password"/>
+            <input type="submit" value="Sign in" />
+        }
+    </div>
+</div>

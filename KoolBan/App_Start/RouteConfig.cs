@@ -25,7 +25,7 @@ namespace KoolBan
 
             routes.MapRoute(
                 name: "Home",
-                url: "home",
+                url: "",
                 defaults: new { controller = "Home", action = "Index", id = "Demo" }
             );
 
@@ -35,6 +35,7 @@ namespace KoolBan
                 defaults: new { controller = "Home", action = "Index", id = "Demo" }
             );
 
+            // Used to route all projects
             routes.MapRoute(
                 name: "Projects",
                 url: "{id}",
