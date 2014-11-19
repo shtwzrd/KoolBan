@@ -17,19 +17,19 @@ namespace KoolBan.Controllers
 
         [HttpPost]
         public JsonResult CreateProject(Project project)
-//        public ActionResult CreateProject(Project project)
         {
             if (ModelState.IsValid)
             {
-                _projectRepository.Create(project);
-                _projectRepository.Save();
-
-                return Json(new { result = "HttpPost Successful" });
-//                return RedirectToAction("Index", "Home", new {id = project.ProjectId});
+                Project dbProject = _projectRepository.Find(project.ProjectId);
+                if (dbProject == null)
+                {
+                    _projectRepository.Create(project);
+                    _projectRepository.Save();
+                    return Json(new { result = "HttpPost Successful" });
+                }
             }
 
             return Json(new { result = "HttpPost Failed" });
-//            return RedirectToRoute("Demo");
         }
 
         [HttpGet]
